@@ -21,6 +21,9 @@
 | [PERF-0001](#perf-0001--descriptor-hot-page-fallback) | Fallback für übersehene Deskriptor-Schreibzugriffe | `FRAME_TIME_MS` | 82 ms → 72 ms | −10 ms (−12,2 %) | `AUTHOR_MEASURED` |
 | [PERF-0002](#perf-0002--shader-reply-polling) | Shader-Antworten schneller erkennen | `LOAD_TIME_S` | 32 s → 26 s | −6 s (−18,75 %) | `AUTHOR_MEASURED` |
 | [PERF-0003](#perf-0003--single-record-indirect-clamp) | Spezialisierter Ein-Record-Indirect-Clamp (synthetischer GPU-Benchmark) | `FRAME_TIME_MS` | 26,532 ms → 21,392 ms | −5,140 ms (−19,4 %) | `AUTHOR_MEASURED` |
+| [PERF-0004](#perf-0004--three-copy-and-refresh-switches) | Gemeinsam gemessene Kopier-/Refresh-Optimierungen | `WORLD_FPS` | 12,7 FPS → 14,8 FPS | +2,1 FPS (+16,5 %) | `AUTHOR_MEASURED` |
+| [PERF-0005](#perf-0005--reduced-descriptor-heap-scan-cadence) | Seltener vollständiger Deskriptor-Heap-Scan | `WORLD_FPS` | 14,2 FPS → 15,2 FPS | +1,0 FPS (+7,0 %) | `AUTHOR_MEASURED` |
+| [PERF-0006](#perf-0006--asynchronous-copy-back-relay) | Asynchroner Copy-back-Relay (bereits in Baseline) | `FRAME_TIME_MS` | 274 ms → 126 ms | −148 ms (−54,0 %) | `AUTHOR_MEASURED` |
 
 ## Detaildatensätze
 
@@ -121,3 +124,60 @@ Der **isolierbar dokumentierte** Vergleich betrifft das Ein-/Ausschalten von Ren
 | Baseline integration | `BASE-0001`, [2de998014dc85ad68cd6422a250400c7084ace57](https://github.com/avatarmanz/VIctory-7900XTX/commit/2de998014dc85ad68cd6422a250400c7084ace57), `ADAPTATION_REQUIRED`: [Baseline indirect.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/indirect.rs) enthält den gruppierten 64-Thread-Clamp mit Shared Arrays; dort zusätzliche Budgetdiagnostik (Offsets 12/16) gegenüber dem gezeigten Quellpatch erhalten. Nicht unverändert übernehmen; GPU-Parität und Laufzeit separat prüfen. |
 | Provenance / License | Original-Commit im Quellprojekt; [Workspace GPL-3.0-or-later](https://github.com/ProjectLeonidaL/leonida/blob/2689d10a43fe401a9b0e2d74ae0dfab359ba9a87/Cargo.toml). Einzelne Vorarbeiten und Drittkomponenten vor Übernahme prüfen. |
 | Adoptions | `none recorded` |
+
+### PERF-0004 — Three copy and refresh switches
+
+| Feld | Inhalt |
+| --- | --- |
+| Status | `VERIFIED_AUTHOR` |
+| Origin repository | [LooperSalty/AnyXboxX](https://github.com/LooperSalty/AnyXboxX) |
+| Code commit(s) | [26c11d4 – Portierung #383](https://github.com/LooperSalty/AnyXboxX/commit/26c11d4d9ad468e092507005dfd310e26fe0a7fe); [92a1949 – Aktivierung #386](https://github.com/LooperSalty/AnyXboxX/commit/92a194902faa9b96306ee3a97cce37a01f7e5ea9) |
+| Evidence commit(s) | [92a1949 – settings.rs mit A/B-Werten](https://github.com/LooperSalty/AnyXboxX/commit/92a194902faa9b96306ee3a97cce37a01f7e5ea9); [a5b0aed – neue versionierte Messübersicht](https://github.com/LooperSalty/AnyXboxX/commit/a5b0aed87a8ab50cf14a7580aa08295557698ab5) |
+| Merged PR | [#383](https://github.com/LooperSalty/AnyXboxX/pull/383), [#386](https://github.com/LooperSalty/AnyXboxX/pull/386) |
+| Subsystem / Mechanism | `VICTORY_STEP_INDEX` indexiert Kopien pro Schritt; `VICTORY_CARD_SYNC_BATCH` gruppiert Kopien, Barrieren und Hashes; `VICTORY_PARALLEL_REFRESH` parallelisiert Texturprüfungen. Nur das Dreierpaket gemeinsam gemessen. |
+| Metric; Before; After; Delta | Mediane Welt-FPS: 12,7 aus → 14,8 ein; +2,1 FPS (+16,5 %, Quelle gerundet +17 %). Keine Einzelwirkung ableitbar. |
+| Test conditions | Windows 11; RTX 4070 SUPER; i7-13700KF; Series X; derselbe Lauf mit Wechsel alle 20 s; erste 6 s pro Wechsel verworfen; 17 Ein-/19 Aus-Stichproben; exakte Auflösung, Szenenfolge und Gesamtlaufdauer unknown. Bildqualität nicht unabhängig verifiziert. |
+| Evidence | `AUTHOR_MEASURED` – dokumentierter In-Session-A/B in #386, Zahlen im Aktivierungscommit und erneut in neuem Dokumentationscommit. Keine unabhängige Reproduktion. |
+| Trade-offs | Kein Crash oder Device Loss laut Quelle; Langzeitstabilität und Bildgleichheit nicht unabhängig geprüft. Kein additiver Gewinn mit anderen Findings. |
+| Integration | Copy-step-Index, GPU-Barrier-/Hash-Reihenfolge und Refresh-Threading gemeinsam gegen vorhandenen Renderer abgleichen; getrennt validieren. |
+| Baseline integration | BASE-0001, `2de998014dc85ad68cd6422a250400c7084ace57`; `ADAPTATION_REQUIRED`. [host.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/host.rs) enthält bereits multicore parallel refresh; [card_steps.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/host/card_steps.rs) zeigt separaten Card-Step-Pfad. Keine Identität des gesamten gemessenen Switch-Pakets nachgewiesen; Überlappungen verhindern eine ungeprüfte Übernahme. |
+| Provenance / License | Portierung in #383 mit Herkunftsangaben aus fxceless/victory-gta6 (84c5dc00, 6aed0780, ceb9e1f7); [THIRD_PARTY.md](https://github.com/LooperSalty/AnyXboxX/blob/26c11d4d9ad468e092507005dfd310e26fe0a7fe/THIRD_PARTY.md) nennt GPL-3.0. Ursprüngliche Kurzreferenzen nicht separat abrufbar; konkrete Portierungsdiffs und Messcommit geprüft. Lizenz jeder übernommenen Komponente vor Integration prüfen. |
+| Adoptions | none recorded |
+
+### PERF-0005 — Reduced descriptor heap scan cadence
+
+| Feld | Inhalt |
+| --- | --- |
+| Status | `VERIFIED_AUTHOR` |
+| Origin repository | [LooperSalty/AnyXboxX](https://github.com/LooperSalty/AnyXboxX) |
+| Code commit(s) | [ed60e31 – Scan-Intervall](https://github.com/LooperSalty/AnyXboxX/commit/ed60e312e634fe89a3ea96190b3a995fd4b9be28); [49786c8 – Aktivierung und Messung](https://github.com/LooperSalty/AnyXboxX/commit/49786c8cd85faf626c39c0db14e8e83ac4ce847c) |
+| Evidence commit(s) | [49786c8 – settings.rs mit A/B-Werten](https://github.com/LooperSalty/AnyXboxX/commit/49786c8cd85faf626c39c0db14e8e83ac4ce847c); [a5b0aed – neue versionierte Messübersicht](https://github.com/LooperSalty/AnyXboxX/commit/a5b0aed87a8ab50cf14a7580aa08295557698ab5) |
+| Merged PR | [#394](https://github.com/LooperSalty/AnyXboxX/pull/394); [Merge](https://github.com/LooperSalty/AnyXboxX/commit/ce0f90f1e469132cb0a866e0dcec9ca0f53e874a) |
+| Subsystem / Mechanism | `VICTORY_HEAP_SCAN_ALT` reduziert vollständige Heap-Scans von jedem Durchlauf auf jeden 16. Durchlauf; normale Aktualisierungspfade bleiben relevant. |
+| Metric; Before; After; Delta | Mediane Welt-FPS: 14,2 → 15,2; +1,0 FPS (+7,0 %). Ergänzend: 5-s-Fenster über 100 ms/Frame: 4 aus vs. 1 ein; wegen ungleicher Stichprobenzahlen kein normierter Stutter-Ratenvergleich. |
+| Test conditions | RTX 4070 SUPER; Windows 11; Series X; Wechsel alle 20 s im selben Lauf; 11 Aus-/13 Ein-Stichproben. Exakte Auflösung, Gesamtdauer und Szene unknown; Gesichter laut PR visuell geprüft. |
+| Evidence | `AUTHOR_MEASURED` – #394 und versionierter settings.rs-Messkommentar; neuer Dokumentationscommit bestätigt die Messung. Keine unabhängige Reproduktion. |
+| Trade-offs | Verzögertes Entdecken übersehener Deskriptoränderungen möglich; Bildqualität und Langzeitstabilität nicht umfassend validiert. Kein additiver Gewinn mit PERF-0004 nachgewiesen. |
+| Integration | Scan-Takt mit Write-Journal, Hot-Page-Fallback und Descriptor-Invalidierung abgleichen; keine Blindübernahme. |
+| Baseline integration | BASE-0001, `2de998014dc85ad68cd6422a250400c7084ace57`; `ADAPTATION_REQUIRED`. [draw.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/draw.rs) enthält heap_textures; [descriptor/host.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/descriptor/host.rs) und [port_descriptors.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/port_descriptors.rs) verwenden verwandte Descriptor-/Fallback-Mechanismen. Der separate AnyXboxX-heap_pass-Pfad und identische Switch-Semantik sind nicht nachgewiesen. |
+| Provenance / License | Portierungsdiff ed60e31 nennt Cherry-Pick 4e3592d599fc5d42c37f9ee0640ea5cd1bf36715; dieser ursprüngliche Commit war separat nicht abrufbar. Erreichbarer Portierungsdiff und Aktivierung belegt; Einzelpatch-Lizenz not verified. |
+| Adoptions | none recorded |
+
+### PERF-0006 — Asynchronous copy-back relay
+
+| Feld | Inhalt |
+| --- | --- |
+| Status | `VERIFIED_AUTHOR` |
+| Origin repository | [ProjectLeonidaL/leonida](https://github.com/ProjectLeonidaL/leonida) |
+| Code commit(s) | [c96b4f2 – schnellere Defaults inklusive Relay, fxceless](https://github.com/ProjectLeonidaL/leonida/commit/c96b4f2b8365bf43d54ab074940923ef8267f4c6) |
+| Evidence commit(s) | [a8beb52 – neuer Ein-/Aus-Vergleich in fork-notes.md](https://github.com/ProjectLeonidaL/leonida/commit/a8beb52f13e4e7f3519134307e58e84a0fa9604a); [850aa03 – Merge](https://github.com/ProjectLeonidaL/leonida/commit/850aa035f9912c95365efb8aa71fbc23f33c9e42) |
+| Merged PR | [#46 – Messdokumentation](https://github.com/ProjectLeonidaL/leonida/pull/46); ursprünglicher Code-PR n/a |
+| Subsystem / Mechanism | Relay-Thread übernimmt Copy-back neben der Submission; Stufe 2 begrenzt Warten auf tatsächlich betroffene Datenbereiche. Messung isoliert Relay-Schalter, nicht das gesamte frühere Default-Änderungspaket. |
+| Metric; Before; After; Delta | Übliche Welt-Frametime (nicht als Median ausgewiesen): Relay aus 274 ms → Relay ein 126 ms; −148 ms (−54,0 %). |
+| Test conditions | RTX 3080 12 GB, Ryzen 7 7800X3D, Treiber 621.24; je ein unbeaufsichtigter Diagnostics-Lauf auf base; Welt nach ca. 70 s, Vergleich 170–330 s, 4.650–4.950 Draws, periodische Tastatureingaben. Auflösung und exakte Bildqualität unknown. |
+| Evidence | `AUTHOR_MEASURED` – explizites Relay-Aus-/Ein-Ergebnis in neuem versioniertem fork-notes.md; keine unabhängige Reproduktion. |
+| Trade-offs | Ein Lauf je Zustand; keine nachgewiesene Langzeitstabilität oder exakte Bildgleichheit. Kein zusätzlicher Baseline-Gewinn. |
+| Integration | Relay-Stufe, Copy-back-Reihenfolge und Queue-Synchronisation müssen zusammenpassen. Vorhandene Implementierung nicht erneut portieren. |
+| Baseline integration | BASE-0001, `2de998014dc85ad68cd6422a250400c7084ace57`; `ALREADY_PRESENT`. [Baseline host.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/host.rs) enthält Relay und relay_exact (Stufe 2 bei unset/2), [shadow.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/shadow.rs) enthält standardmäßig aktiven Relay. Entsprechende Funktionen im [Quell-host.rs](https://github.com/ProjectLeonidaL/leonida/blob/1c5bd30911b19ee076d0187d60a80b2910de27bc/crates/leonida-gpu/src/host.rs) und [Quell-shadow.rs](https://github.com/ProjectLeonidaL/leonida/blob/2689d10a43fe401a9b0e2d74ae0dfab359ba9a87/crates/leonida-gpu/src/shadow.rs) geprüft; keine Behauptung identischer Gesamtleistung. |
+| Provenance / License | Default-Aktivierung c96b4f2 von fxceless; [Quell-Workspace](https://github.com/ProjectLeonidaL/leonida/blob/2689d10a43fe401a9b0e2d74ae0dfab359ba9a87/Cargo.toml) GPL-3.0-or-later; ursprünglicher Implementierungscommit nicht separat ermittelt. |
+| Adoptions | Technische Wirkung bereits in BASE-0001, `2de998014dc85ad68cd6422a250400c7084ace57`; kein neuer Port. |
