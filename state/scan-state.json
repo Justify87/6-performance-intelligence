@@ -24,12 +24,12 @@
     },
     "LooperSalty/AnyXboxX": {
       "default_branch": "main",
-      "last_scanned_sha": "ba9437fb886e9366de2a22eb47878202f88e9d38",
-      "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-26T18:54:37+01:00",
-      "status": "READY",
-      "pending_target_sha": null,
-      "last_error": null
+      "last_scanned_sha": "32484600efba2107cb719e52f613bdb141511e3b",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "BLOCKED",
+      "pending_target_sha": "ba9437fb886e9366de2a22eb47878202f88e9d38",
+      "last_error": "RECOVERY_INCOMPLETE_RANGE: compare reported 23 commits; only 16 listed before cursor by date; exact ancestry coverage not established. Re-enumerate (last_scanned_sha, pending_target_sha] before advancing."
     },
     "fxceless/victory-fork": {
       "default_branch": "main",
@@ -69,12 +69,12 @@
     },
     "ubiquitarianism/leonida": {
       "default_branch": "main",
-      "last_scanned_sha": "bd6ba97ab6366777f76a080861017df5366f5a28",
-      "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-26T18:54:37+01:00",
-      "status": "READY",
-      "pending_target_sha": null,
-      "last_error": null
+      "last_scanned_sha": "935a2cd5b6854b6abff43704f4569290c618a1ec",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "BLOCKED",
+      "pending_target_sha": "bd6ba97ab6366777f76a080861017df5366f5a28",
+      "last_error": "RECOVERY_INCOMPLETE_RANGE: compare reported 6 commits; only 3 listed before cursor by date; exact ancestry coverage not established. Re-enumerate (last_scanned_sha, pending_target_sha] before advancing."
     },
     "Gamination/victory-4060": {
       "default_branch": "work",
@@ -86,6 +86,6 @@
       "last_error": null
     }
   },
-  "state_contract": "A cursor advances only after fully reviewing the corresponding default-branch commit interval and atomically publishing any findings together with this state.",
+  "state_contract": "A cursor advances only after proving complete enumeration and reviewing the corresponding default-branch interval, and atomically publishing findings and state without losing any repository files.",
   "last_monitor_run_at": "2026-11-26T18:54:37+01:00"
 }
