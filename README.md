@@ -21,14 +21,19 @@
 | --- | --- | --- |
 | [`AGENTS.md`](AGENTS.md) | Ausführbares Harness: Gates, Evidenz, Recovery, Freigaben | Nur bewusste Harness-Änderungen |
 | [`WATCHLIST.md`](WATCHLIST.md) | Quell-Repositories, Priorität und Monitoring-Status | Nur begründete Aufnahme/Statusänderung |
+| [`BASELINE.md`](BASELINE.md) | Feste technische Ausgangsbasis für spätere Integration | Nur explizite, evidenzbasierte Neuauswahl |
 | [`FINDINGS.md`](FINDINGS.md) | **Kanonisches Register** bestätigter Verbesserungen | Nur vollständige, quellenbelegte Befunde |
 | [`PERFORMANCE.md`](PERFORMANCE.md) | **Abgeleitete**, vergleichsorientierte Ranglisten | Nur auf Grundlage der Finding-IDs |
 | [`state/scan-state.json`](state/scan-state.json) | Persistente SHA-Cursor, Default-Branch-Beobachtung, Fehlerstatus | Mit neuen Findings atomar publizieren |
 | `README.md` | Ziel, Architektur, Bedien- und Betriebsstatus | Keine konkurrierenden Detailregeln |
 
+## Technische Integrationsbasis
+
+[BASELINE.md](BASELINE.md) verankert einen konkreten Quellcode-Stand unabhängig von den Scan-Cursorn. Neue belegte Verbesserungen werden gegen diesen Stand auf Vorhandensein und Übertragbarkeit geprüft; eine Umsetzung erfolgt nicht im Monitor.
+
 ## Start-Anker und Qualitätsgrenzen
 
-Die existierenden neun `last_scanned_sha` wurden bei der Einrichtung vom damaligen Standardbranch erfasst. **Sie sind Start-Anker, keine Behauptung über rückwirkend geprüfte Commits.** Regulär geprüft wird nur, was **danach** im Standardbranch hinzukommt. Nachgereichte Benchmarks in neuen Commits dürfen für eine gezielte Verifikation frühere Code-Commits referenzieren; dies ist kein allgemeiner historischer Rescan.
+Die existierenden `last_scanned_sha` wurden bei der Einrichtung vom damaligen Standardbranch erfasst. **Sie sind Start-Anker, keine Behauptung über rückwirkend geprüfte Commits.** Regulär geprüft wird nur, was **danach** im Standardbranch hinzukommt. Nachgereichte Benchmarks in neuen Commits dürfen für eine gezielte Verifikation frühere Code-Commits referenzieren; dies ist kein allgemeiner historischer Rescan.
 
 Ein Vergleich ist nur aussagekräftig, wenn Messbedingungen hinreichend vergleichbar sind. Menu-FPS ≠ Spielwelt-FPS, Frame-Generation ≠ native FPS, reservierter ≠ tatsächlich genutzter Speicher. Entwickler-Messungen und unabhängige Reproduktionen bleiben unterscheidbar.
 

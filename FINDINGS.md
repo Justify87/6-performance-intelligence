@@ -37,10 +37,23 @@ Für **jeden** Fund nach `### PERF-XXXX — Kurzname` exakt diese Feldreihenfolg
 | Evidence | `AUTHOR_MEASURED` oder `INDEPENDENT_REPRODUCED` und spezifischer Nachweis |
 | Trade-offs | Bekannte Regressionen, Qualitäts- und Stabilitätsfolgen oder `not documented` |
 | Integration | Abhängigkeiten, Überschneidungen, potenzielle Kompatibilitätsprobleme |
+| Baseline integration | Baseline-ID + vollständiger SHA; Status gemäß untenstehendem Vertrag; konkreter Code-/Herkunftsbeleg und Einschränkungen |
 | Provenance / License | Herkunftsquelle, Lizenz nachweisbar oder `not verified` |
 | Adoptions | Spätere übernommene Commits anderer Forks oder `none recorded` |
 
 Ein Datensatz wird **nur** mit allen Pflichtfeldern angelegt. Lange Erklärungen dürfen zusätzlich unter `#### Technical notes` erscheinen; Standardfelder nicht umbenennen. Bei Übernahme oder erneuter Messung **bestehenden Datensatz ergänzen**, nicht zweite ID vergeben. Eine neue Messung ist kein Beweis für identische Hardware-/Szenenbedingungen.
+
+## Baseline-Integrationsvertrag
+
+| Status | Semantik |
+| --- | --- |
+| `ALREADY_PRESENT` | Technische Wirkung am fixierten Baseline-SHA nachweisbar enthalten |
+| `PORTABLE` | Voraussichtlich direkt übertragbar; passende Schnittstellen und Herkunft nachgewiesen, noch nicht implementiert |
+| `ADAPTATION_REQUIRED` | Gemeinsame oder anschlussfähige Architektur, Anpassungs-/Validierungsbedarf |
+| `INCOMPATIBLE` | Konkreter technischer oder Lizenzkonflikt verhindert sinnvolle Übertragung |
+| `UNKNOWN` | Evidenz zur Kompatibilität fehlt |
+
+Die Einstufung bezieht sich ausschließlich auf [BASELINE.md](BASELINE.md) und den angegebenen SHA. Sie ändert keine gemessenen Quellwerte und ist keine Zusicherung einer lauffähigen Integration.
 
 ## Nicht zulässige Funde
 
@@ -61,6 +74,7 @@ Keine Menü-FPS statt Welt-FPS, keine inhaltslosen „FPS boost“-Behauptungen,
 | Evidence | `AUTHOR_MEASURED` – A/B-Zahlen in versionierter README; von uns keine Benchmarks ausgeführt, keine unabhängig reproduzierten Rohlogs. Der frühere Versionsvergleich 80 ms → 72 ms betrifft mehrere gleichzeitige Änderungen und belegt **nicht** allein den Port-2-Effekt. |
 | Trade-offs | Bereits bekannte Probleme: neue Texturen können zeitweise schwarz oder niedrig aufgelöst sein; vollständige Bildgleichheit des A/B-Vergleichs nicht unabhängig geprüft. Der Hot-page-Fallback soll zuvor fehlende indirekte Beleuchtung wiederherstellen. |
 | Integration | Abhängigkeit von Renderer-Port 2 und dessen Deskriptor-Tracking/Fallback; nicht als unabhängiger Drop-in-Patch getestet. Spätere Integration erfordert Abgleich der Deskriptorverwaltung, Port-3-Einstellungen sowie A/B-Benchmarks auf Zielhardware. |
+| Baseline integration | `BASE-0001`, [`2de998014dc85ad68cd6422a250400c7084ace57`](https://github.com/avatarmanz/VIctory-7900XTX/commit/2de998014dc85ad68cd6422a250400c7084ace57), `ADAPTATION_REQUIRED`: gemeinsamer Code-Vorfahr c9c932c und [Baseline-Deskriptor-Fallback](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/port_descriptors.rs) geprüft; Hot-page-Schalter fehlt. Port-2-Pfad und weitere VInAMD-Abhängigkeiten/Launcher-Konfiguration bei späterer Übernahme gezielt prüfen. Messgewinn auf Baseline unbekannt. |
 | Provenance / License | Attribution zu den verlinkten VInAMD-Commits; mögliche Vorarbeiten anderer Forks vor Übernahme prüfen. Lizenzkompatibilität: `not verified`. |
 | Adoptions | `none recorded` |
 

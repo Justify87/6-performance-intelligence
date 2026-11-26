@@ -33,10 +33,6 @@
 | --- | --- | --- | --- | --- | --- |
 | — | Noch kein qualifizierter Fund | — | — | — | — |
 
-## Referenzportierungen
+## Technischer Integrationsanker
 
-| Vergleichsgruppe | Führender belegter Kandidat | Mess- und Szenenbeleg | Einschränkung |
-| --- | --- | --- | --- |
-| Noch keine vergleichbare Gruppe | **Kein Sieger bestimmt** | Keine qualifizierten Funde seit dem Bootstrap | Einzelne README-Höchstwerte reichen nicht aus |
-
-**Regel:** Ein Fund beschreibt eine **relative** Verbesserung. Daraus allein folgt nicht, dass die gesamte Portierung insgesamt die höchste FPS oder beste Stabilität bietet. Spitzenkandidaten nur mit direkt vergleichbaren Gesamttests nennen und auf den belegenden Fund verweisen; andernfalls offen lassen.
+Die verbindliche technische Ausgangsbasis und ihre versionierten Leistungsbelege stehen ausschließlich in [BASELINE.md](BASELINE.md). Sie ist kein aus relativen Finding-Gewinnen abgeleiteter Gesamtsieger. Die obenstehenden Tabellen bleiben ausschließlich aus den kanonischen Findings abgeleitet; eine globale Rangfolge ist ohne vergleichbare Gesamttests nicht belegt.
