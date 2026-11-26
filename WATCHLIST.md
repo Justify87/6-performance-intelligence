@@ -24,6 +24,26 @@
 | [proneonn/Vertex](https://github.com/proneonn/Vertex) | P2 | ACTIVE | Rendering, Abstürze, GPU-Diagnostik |
 | [Gamination/victory-4060](https://github.com/Gamination/victory-4060) | P2 | ACTIVE | Speicherverwaltung, begrenzter VRAM |
 | [ubiquitarianism/leonida](https://github.com/ubiquitarianism/leonida) | P2 | ACTIVE | Alternativer Recompilation-Ansatz |
+| [R0Y00/Xbox2Windows](https://github.com/R0Y00/Xbox2Windows) | P1 | ACTIVE | Statische Recompilation, Upload-Ring, Shader-Lowering |
+| [Belobug/VIctory-Belobug-AMD](https://github.com/Belobug/VIctory-Belobug-AMD) | P1 | ACTIVE | AMD-Renderer, Textur-Uploads, FSR |
+| [DexNom/VIctory](https://github.com/DexNom/VIctory) | P1 | ACTIVE | RayTime, Radeon-Renderer, FSR und Raytracing |
+| [DoubleGhosty/cool_fox](https://github.com/DoubleGhosty/cool_fox) | P1 | ACTIVE | GPU-Residency, Zero-Copy-Buffer, CBV und Wine |
+| [ZigZagBoi1/ScarlettPort](https://github.com/ZigZagBoi1/ScarlettPort) | P1 | ACTIVE | Shader-Warm-up, PSO-Caching, Renderer-Integration |
+| [myokex/victory-amd](https://github.com/myokex/victory-amd) | P1 | ACTIVE | GPU-Write-Watch, Deskriptoren und Texturverwaltung |
+| [uiliannn/VItoriaBr](https://github.com/uiliannn/VItoriaBr) | P1 | ACTIVE | D3D12-Renderer, Deskriptor-Heap, UAV-Writeback |
+| [stellarr-studio/kelvaroq](https://github.com/stellarr-studio/kelvaroq) | P1 | ACTIVE | Runtime-Patches, GPU-Speicherverwaltung und DXR |
+| [PastiiJay/klbf-lab](https://github.com/PastiiJay/klbf-lab) | P1 | ACTIVE | AMD-Renderer, Pipeline-Prebuild, Benchmark-Methodik |
+| [DesertGamer/VIPort](https://github.com/DesertGamer/VIPort) | P1 | ACTIVE | Lazy-Texturallokation, Shader-Hardwaresemantik |
+| [ka1qux/BRVIctory-ka1qux](https://github.com/ka1qux/BRVIctory-ka1qux) | P1 | ACTIVE | AMD-GPU, Depth-Bounds und Renderer-Regressionstests |
+| [californiaAlmonds/OpenScarlett](https://github.com/californiaAlmonds/OpenScarlett) | P1 | ACTIVE | D3D12/Vulkan, VRAM-Management, Mesh-Shader |
+| [ThatRecompDev/five-star-recomp](https://github.com/ThatRecompDev/five-star-recomp) | P1 | ACTIVE | Recompilation, D3D12X-Shims, Raytracing und GPU-Stabilität |
+| [ProjectLeonidaL/leonida](https://github.com/ProjectLeonidaL/leonida) | P2 | ACTIVE | Statische Recompilation, Loader und Konsoleninstruktionen |
+| [brcly/TuxBox](https://github.com/brcly/TuxBox) | P2 | ACTIVE | Linux/Windows, Vulkan, CBV-Kompatibilität |
+| [sammwyy/xvalkyrie](https://github.com/sammwyy/xvalkyrie) | P2 | ACTIVE | Xbox-HLE, RDNA-Shader-Übersetzung |
+| [pragyaangaur/VIctory-macOS](https://github.com/pragyaangaur/VIctory-macOS) | P2 | ACTIVE | Apple Silicon, Wine/D3DMetal, Shader-Waves und GPU-Puffer |
+| [ranveersoni98/Xenora](https://github.com/ranveersoni98/Xenora) | P2 | ACTIVE | ARM64-Recompilation, Metal und Loader-Runtime |
+| [zortos293/XSEmu](https://github.com/zortos293/XSEmu) | P2 | ACTIVE | XCL-basierter Renderer, DXIL und GPU-Heap-Kompatibilität |
+| [PlutonusDev/OpenEra](https://github.com/PlutonusDev/OpenEra) | P2 | ACTIVE | GameCore/Era-Runtime, Kernel-Shims und Speicherverwaltung |
 
 ## Änderungsvertrag
 

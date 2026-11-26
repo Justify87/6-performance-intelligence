@@ -84,6 +84,186 @@
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
+    },
+    "R0Y00/Xbox2Windows": {
+      "default_branch": "main",
+      "last_scanned_sha": "6ee878d8cd500d3a0b2eabe36d652775488ae25d",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "Belobug/VIctory-Belobug-AMD": {
+      "default_branch": "a-publier",
+      "last_scanned_sha": "cd8dfc06ace7ccb91a19431e74bc2d0de2a10145",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "DexNom/VIctory": {
+      "default_branch": "main",
+      "last_scanned_sha": "64bd58f5fb794216894bc0e33e03a3a64d19c347",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "DoubleGhosty/cool_fox": {
+      "default_branch": "main",
+      "last_scanned_sha": "3277b1565118e209dfcb395267c31e11d7e1d436",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "ZigZagBoi1/ScarlettPort": {
+      "default_branch": "main",
+      "last_scanned_sha": "424fc91900d83bb013160669201b2eab15f80a3b",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "myokex/victory-amd": {
+      "default_branch": "vi-fx3",
+      "last_scanned_sha": "aa8399e5b5e96af2cab80d01aa636c772cdae54e",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "uiliannn/VItoriaBr": {
+      "default_branch": "main",
+      "last_scanned_sha": "1361e190b7f46df996f00ea1b540ecf66785127f",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "stellarr-studio/kelvaroq": {
+      "default_branch": "main",
+      "last_scanned_sha": "e062a82e04853bbcae281d166980e0a9b65c975a",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "PastiiJay/klbf-lab": {
+      "default_branch": "main",
+      "last_scanned_sha": "0c529ca05c68e3d8a77f2a66143cb43b6b90e225",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "DesertGamer/VIPort": {
+      "default_branch": "main",
+      "last_scanned_sha": "59b79381fe499b736532153c8d267a080af7af0b",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "ka1qux/BRVIctory-ka1qux": {
+      "default_branch": "main",
+      "last_scanned_sha": "05e4d5017c62f2ccb3ebe98f06a5cdcbe7064563",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "californiaAlmonds/OpenScarlett": {
+      "default_branch": "main",
+      "last_scanned_sha": "48a98fcd31a9f5d6c8ba344592215c1539d6e7dc",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "ThatRecompDev/five-star-recomp": {
+      "default_branch": "main",
+      "last_scanned_sha": "9864ac5ee1cf9ab7909b1be427430d87f1c3eb26",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "ProjectLeonidaL/leonida": {
+      "default_branch": "main",
+      "last_scanned_sha": "e39a3138360b6a980a986ffc6a236d1905773b4c",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "brcly/TuxBox": {
+      "default_branch": "main",
+      "last_scanned_sha": "5c5677bebc1d52788a599eb7b274644f3b4c458d",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "sammwyy/xvalkyrie": {
+      "default_branch": "main",
+      "last_scanned_sha": "42db5d78f1fce93bdc11f70c2be16b2cb920ad8f",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "pragyaangaur/VIctory-macOS": {
+      "default_branch": "main",
+      "last_scanned_sha": "bf99e728b2fa89c3550d51e07626c0da9bd6ec47",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "ranveersoni98/Xenora": {
+      "default_branch": "main",
+      "last_scanned_sha": "0829fc2910bc723a72bde90a6fb55ba1efa90373",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "zortos293/XSEmu": {
+      "default_branch": "main",
+      "last_scanned_sha": "72590ae5118b1e37aeccea787d5bc891af9e751d",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
+    },
+    "PlutonusDev/OpenEra": {
+      "default_branch": "main",
+      "last_scanned_sha": "053340affd5381a5bb52bda113b669078fa790e3",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
     }
   },
   "state_contract": "A cursor advances only after proving complete enumeration and reviewing the corresponding default-branch interval, and atomically publishing findings and state without losing any repository files.",
