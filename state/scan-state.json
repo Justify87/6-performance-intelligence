@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "policy": "source_default_branch_only",
+  "initialized_at": "2026-11-26T18:06:51+01:00",
+  "notes": "Bootstrap cursors are observation anchors only. Commits up to and including each anchor were not retrospectively audited. Regular scans consider only commits strictly after each anchor.",
+  "repositories": {
+    "Marvisak/VIctory": {
+      "default_branch": "main",
+      "last_scanned_sha": "63bcca43c6a00a758510398fa43096ce7e4f7df0",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null
+    },
+    "avatarmanz/VIctory-7900XTX": {
+      "default_branch": "main",
+      "last_scanned_sha": "c9c932cbcc38defd8f1683d62dd298187f565031",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null
+    },
+    "LooperSalty/AnyXboxX": {
+      "default_branch": "main",
+      "last_scanned_sha": "32484600efba2107cb719e52f613bdb141511e3b",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null
+    },
+    "fxceless/victory-fork": {
+      "default_branch": "main",
+      "last_scanned_sha": "e4245f3c1b0490250d9cf0946a2113000be98687",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null
+    },
+    "xcl-dev/xcl": {
+      "default_branch": "main",
+      "last_scanned_sha": "8b957bec6f82495aec940944c6bf47faa02db590",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null
+    },
+    "proneonn/Vertex": {
+      "default_branch": "main",
+      "last_scanned_sha": "33f26c4e49c64bc1135aebd0e8d02507c1417a0e",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null
+    },
+    "iLucasRT/VInAMD": {
+      "default_branch": "main",
+      "last_scanned_sha": "eb9d08a05be908c1ee12a4716038c78be154fe22",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null
+    },
+    "ubiquitarianism/leonida": {
+      "default_branch": "main",
+      "last_scanned_sha": "935a2cd5b6854b6abff43704f4569290c618a1ec",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null
+    },
+    "Gamination/victory-4060": {
+      "default_branch": "work",
+      "last_scanned_sha": "47e64b0dcbef09a5aefd7538e6f62a50bd912837",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null
+    }
+  }
+}
