@@ -28,14 +28,14 @@
       "cursor_origin": "bootstrap_anchor",
       "last_completed_scan_at": null,
       "status": "BLOCKED",
-      "pending_target_sha": "ba9437fb886e9366de2a22eb47878202f88e9d38",
-      "last_error": "RECOVERY_INCOMPLETE_RANGE: compare reported 23 commits; only 16 listed before cursor by date; exact ancestry coverage not established. Re-enumerate (last_scanned_sha, pending_target_sha] before advancing."
+      "pending_target_sha": "37d4686711bbb04c2cc3825f3f13bbff7c140fb0",
+      "last_error": "REVIEW_INCOMPLETE: SHA-bound compare enumerated 59 unique commits (ahead 59, behind 0), including former pending target ba9437fb886e9366de2a22eb47878202f88e9d38. Classification and targeted review begun; combined runtime replacement 5c63f8ac15209eb41391f5432bf85b958ea68219 changes 263 files; candidate review and attribution not complete. Re-enumerate and complete full interval from unchanged cursor before advancing."
     },
     "fxceless/victory-fork": {
       "default_branch": "main",
-      "last_scanned_sha": "e4245f3c1b0490250d9cf0946a2113000be98687",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "52ac4ec0f8a03f103c146e60228e53612759d435",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-26T19:12:24.249Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -60,21 +60,21 @@
     },
     "iLucasRT/VInAMD": {
       "default_branch": "main",
-      "last_scanned_sha": "5101a92f1fb5fce0e2973299c37044ddbb0e86ab",
+      "last_scanned_sha": "612aef8e2318654f6f9eebe1304253e662c89ef7",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-26T18:54:37+01:00",
+      "last_completed_scan_at": "2026-11-26T19:12:24.249Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "ubiquitarianism/leonida": {
       "default_branch": "main",
-      "last_scanned_sha": "935a2cd5b6854b6abff43704f4569290c618a1ec",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
-      "status": "BLOCKED",
-      "pending_target_sha": "bd6ba97ab6366777f76a080861017df5366f5a28",
-      "last_error": "RECOVERY_INCOMPLETE_RANGE: compare reported 6 commits; only 3 listed before cursor by date; exact ancestry coverage not established. Re-enumerate (last_scanned_sha, pending_target_sha] before advancing."
+      "last_scanned_sha": "2d43417d49fdd8f2d8241f75ea8fd0cdd8811137",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-26T19:12:24.249Z",
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
     },
     "Gamination/victory-4060": {
       "default_branch": "work",
@@ -204,18 +204,18 @@
     },
     "ProjectLeonidaL/leonida": {
       "default_branch": "main",
-      "last_scanned_sha": "e39a3138360b6a980a986ffc6a236d1905773b4c",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "2689d10a43fe401a9b0e2d74ae0dfab359ba9a87",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-26T19:12:24.249Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "brcly/TuxBox": {
       "default_branch": "main",
-      "last_scanned_sha": "5c5677bebc1d52788a599eb7b274644f3b4c458d",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "f0ffa49c7db563be182f91d4a9242c10b06305a2",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-26T19:12:24.249Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -267,5 +267,5 @@
     }
   },
   "state_contract": "A cursor advances only after proving complete enumeration and reviewing the corresponding default-branch interval, and atomically publishing findings and state without losing any repository files.",
-  "last_monitor_run_at": "2026-11-26T18:54:37+01:00"
+  "last_monitor_run_at": "2026-11-26T19:12:24.249Z"
 }
