@@ -114,21 +114,21 @@
     },
     "DoubleGhosty/cool_fox": {
       "default_branch": "main",
-      "last_scanned_sha": "3277b1565118e209dfcb395267c31e11d7e1d436",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
-      "status": "BLOCKED",
-      "pending_target_sha": "64b89673d48c1045b015c1a145852683502b301d",
-      "last_error": "REVIEW_INCOMPLETE: 24 unique reachable commits enumerated (ahead 24, behind 0). Port 7 source comment contains timing claims but reports/PORT-PATCH-7.md is unavailable at the evidence SHA; precise attribution and test context remain unresolved. Fixed baseline already contains identical port_journal.rs. Additional renderer changes require complete candidate review. Keep cursor; review entire interval on retry."
+      "last_scanned_sha": "64b89673d48c1045b015c1a145852683502b301d",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-26T21:33:00.743Z",
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
     },
     "ZigZagBoi1/ScarlettPort": {
       "default_branch": "main",
-      "last_scanned_sha": "424fc91900d83bb013160669201b2eab15f80a3b",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
-      "status": "BLOCKED",
-      "pending_target_sha": "23870346329e445d5806b220b7079c3ba076e703",
-      "last_error": "REVIEW_INCOMPLETE: 12 unique reachable commits enumerated (ahead 12, behind 0); aggregate diff contains 289 files, including large runtime replacement/rename. Imported measurement provenance and candidate review are incomplete. Reported full-picture vs darker-picture FPS are not comparable. Keep cursor; review entire interval on retry."
+      "last_scanned_sha": "23870346329e445d5806b220b7079c3ba076e703",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-26T21:33:00.743Z",
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
     },
     "myokex/victory-amd": {
       "default_branch": "vi-fx3",
@@ -267,5 +267,5 @@
     }
   },
   "state_contract": "A cursor advances only after proving complete enumeration and reviewing the corresponding default-branch interval, and atomically publishing findings and state without losing any repository files.",
-  "last_monitor_run_at": "2026-11-26T21:01:31.670Z"
+  "last_monitor_run_at": "2026-11-26T21:33:00.743Z"
 }
