@@ -15,18 +15,18 @@
     },
     "avatarmanz/VIctory-7900XTX": {
       "default_branch": "main",
-      "last_scanned_sha": "c9c932cbcc38defd8f1683d62dd298187f565031",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "2de998014dc85ad68cd6422a250400c7084ace57",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-26T18:54:37+01:00",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "LooperSalty/AnyXboxX": {
       "default_branch": "main",
-      "last_scanned_sha": "32484600efba2107cb719e52f613bdb141511e3b",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "ba9437fb886e9366de2a22eb47878202f88e9d38",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-26T18:54:37+01:00",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -60,32 +60,32 @@
     },
     "iLucasRT/VInAMD": {
       "default_branch": "main",
-      "last_scanned_sha": "eb9d08a05be908c1ee12a4716038c78be154fe22",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "5101a92f1fb5fce0e2973299c37044ddbb0e86ab",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-26T18:54:37+01:00",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "ubiquitarianism/leonida": {
       "default_branch": "main",
-      "last_scanned_sha": "935a2cd5b6854b6abff43704f4569290c618a1ec",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "bd6ba97ab6366777f76a080861017df5366f5a28",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-26T18:54:37+01:00",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "Gamination/victory-4060": {
       "default_branch": "work",
-      "last_scanned_sha": "47e64b0dcbef09a5aefd7538e6f62a50bd912837",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "30504d328cd53ea094be99cae707d2038f991c80",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-26T18:54:37+01:00",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     }
   },
   "state_contract": "A cursor advances only after fully reviewing the corresponding default-branch commit interval and atomically publishing any findings together with this state.",
-  "last_monitor_run_at": null
+  "last_monitor_run_at": "2026-11-26T18:54:37+01:00"
 }

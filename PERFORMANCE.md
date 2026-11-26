@@ -19,7 +19,7 @@
 
 | Rank | Finding | Before → After | Gain | Context | Evidence |
 | --- | --- | --- | --- | --- | --- |
-| — | Noch kein qualifizierter Fund | — | — | — | — |
+| 1 (RX 7900 XTX / Open World) | [PERF-0001](FINDINGS.md#perf-0001--descriptor-hot-page-fallback) | 82 ms → 72 ms | −10 ms mediane Frametime (−12,2 %) | Windows 11, RX 7900 XTX 24 GB, Ryzen 7 5800X3D; Open World/Stadt; exakte Auflösung unbekannt | `AUTHOR_MEASURED` |
 
 ## RAM / VRAM — gemessene Einsparungen
 
