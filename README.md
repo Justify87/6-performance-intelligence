@@ -1,34 +1,35 @@
 # GTA VI Performance Intelligence
 
-Ein dokumentationsbasiertes, KI-kuratiertes Verzeichnis **nachgewiesener Performance-Verbesserungen** in GTA-VI-PC-Portierungen und verwandten Kompatibilitätsschichten.
+**Zweck:** Evidenzbasierter Katalog bereits in den jeweiligen Standardbranch integrierter Verbesserungen an GTA-VI-Portierungen und Xbox-Series-Kompatibilitätsschichten. Die Ergebnisse sollen eine **spätere, separate Integration** guter Optimierungen ermöglichen. Dieses Repository speichert nur Messungen, Beurteilungen und dauerhafte Referenzen auf Fremdcode – **keinen Fremdcode, keine Spieldateien und keine Installer**.
 
-**Langfristiges Ziel:** die wirksamsten und rechtlich/technisch integrierbaren Optimierungen für ein späteres eigenes Portierungsprojekt identifizieren. Dieses Repository speichert **nur Beschreibungen, Messwerte, Commit-/PR-Links und Herkunftsnachweise** – keinen fremden Quellcode, keine Spieldateien und keine Installer.
+## Betrieb und Grenzen
 
-## Betriebsmodell
-
-Eine **separate, stündliche ChatGPT-Aufgabe** soll GitHub mit den verbundenen Werkzeugen durchsuchen, neue Änderungen **ausschließlich am jeweils aktuellen Standardbranch** auswerten, Performance-Nachweise beurteilen und die Dokumentation samt Scan-Zustand fortschreiben.
-
-- **Keine** GitHub Actions, Python-Skripte, sonstigen Executables oder automatisierten GPU-Benchmarks in diesem Repository.
-- **Strikt inkrementell:** pro Quellprojekt ausschließlich die Commits **nach** dem in `state/scan-state.json` gespeicherten SHA bis zum beim Lauf festgehaltenen aktuellen Standardbranch-HEAD, beide auf derselben Git-Historie.
-- Standardbranch **dynamisch** über die Repository-Metadaten ermitteln: kann `main`, `master`, `work` oder anders heißen. Keine Feature-Branches, offenen PR-Branches oder sonstigen Nebenbranches untersuchen.
-- Nur tatsächlich durch nachvollziehbare **Vorher-/Nachher-Messungen** belegte Performance-Verbesserungen als Funde aufnehmen. Ein README-Versprechen oder technisch plausibler Code ohne Messwerte reicht nicht.
-- Bereits auf den Standardbranch integrierte Pull Requests dürfen als Quellen verlinkt werden; eigenständige PR-Scans unterbleiben.
-- Bei Fehlern oder unvollständiger Auswertung keinen ungesicherten Cursor weitersetzen.
-
-## Semantik der Dateien
-
-| Datei | Vertrag |
+| Eigenschaft | Verbindlicher Stand |
 | --- | --- |
-| [`AGENTS.md`](AGENTS.md) | Verbindliches Harness für jeden manuellen und geplanten ChatGPT-Lauf |
-| [`WATCHLIST.md`](WATCHLIST.md) | Erlaubte Quell-Repositories und ihre Monitoring-Priorität; keine fest verdrahteten Branches |
-| [`FINDINGS.md`](FINDINGS.md) | **Einzige maßgebliche Sammlung** qualifizierter Performance-Verbesserungen |
-| [`PERFORMANCE.md`](PERFORMANCE.md) | Aus `FINDINGS.md` abgeleitete Übersicht und Einordnung; keine unabhängigen Behauptungen |
-| [`state/scan-state.json`](state/scan-state.json) | Persistente SHA-Cursor und Scan-Metadaten je Quell-Repository |
+| Analyse | ChatGPT liest neue GitHub-Commits, prüft Diffs und Messnachweise und urteilt selbst |
+| Takt | Geplant: eine separate ChatGPT-Aufgabe stündlich; **derzeit nicht aktiviert** |
+| Quell-Branch | Je Repository **ausschließlich dessen aktuell gemeldeter `default_branch`** |
+| Scan-Grenze | Nur `(last_scanned_sha, captured_default_branch_head]`; SHA, **nicht Uhrzeit** |
+| Funde | Nur messbare und hinreichend vergleichbare **Vorher-/Nachher-Verbesserungen** |
+| Persistenz | Bewertungen, Übersicht und Scan-Cursor **atomar in einem Git-Commit** |
+| Laufzeitsoftware | **Keine** Python-Skripte, GitHub Actions, Server, Compiler oder Benchmark-Automation |
+| Geplante Schreibfähigkeit | **Noch durch echten unbeaufsichtigten Stundenlauf zu verifizieren** |
 
-## Initialisierung
+## Dateiverträge
 
-Die in `scan-state.json` abgelegten SHAs sind **Start-Anker** von den bei der Einrichtung beobachteten Standardbranches. **Ältere Commits sind dadurch nicht als geprüft zu betrachten.** Der reguläre inkrementelle Scan beginnt strikt **nach** diesen Ankern. Eine rückwirkende Prüfung erfordert einen gesonderten, expliziten Auftrag.
+| Datei | Verantwortlichkeit | Schreibregel |
+| --- | --- | --- |
+| [`AGENTS.md`](AGENTS.md) | Ausführbares Harness: Gates, Evidenz, Recovery, Freigaben | Nur bewusste Harness-Änderungen |
+| [`WATCHLIST.md`](WATCHLIST.md) | Quell-Repositories, Priorität und Monitoring-Status | Nur begründete Aufnahme/Statusänderung |
+| [`FINDINGS.md`](FINDINGS.md) | **Kanonisches Register** bestätigter Verbesserungen | Nur vollständige, quellenbelegte Befunde |
+| [`PERFORMANCE.md`](PERFORMANCE.md) | **Abgeleitete**, vergleichsorientierte Ranglisten | Nur auf Grundlage der Finding-IDs |
+| [`state/scan-state.json`](state/scan-state.json) | Persistente SHA-Cursor, Default-Branch-Beobachtung, Fehlerstatus | Mit neuen Findings atomar publizieren |
+| `README.md` | Ziel, Architektur, Bedien- und Betriebsstatus | Keine konkurrierenden Detailregeln |
 
-Die ChatGPT-Automation ist noch **nicht** angelegt. Ob stündliche, vollständig unbeaufsichtigte Schreibvorgänge über die GitHub-Verbindung funktionieren, muss vor einem Produktivstart in einem echten geplanten Lauf geprüft werden.
+## Start-Anker und Qualitätsgrenzen
 
-Für Details zu Evidenzstandard, Abbrüchen und Wiederanläufen siehe [`AGENTS.md`](AGENTS.md).
+Die existierenden neun `last_scanned_sha` wurden bei der Einrichtung vom damaligen Standardbranch erfasst. **Sie sind Start-Anker, keine Behauptung über rückwirkend geprüfte Commits.** Regulär geprüft wird nur, was **danach** im Standardbranch hinzukommt. Nachgereichte Benchmarks in neuen Commits dürfen für eine gezielte Verifikation frühere Code-Commits referenzieren; dies ist kein allgemeiner historischer Rescan.
+
+Ein Vergleich ist nur aussagekräftig, wenn Messbedingungen hinreichend vergleichbar sind. Menu-FPS ≠ Spielwelt-FPS, Frame-Generation ≠ native FPS, reservierter ≠ tatsächlich genutzter Speicher. Entwickler-Messungen und unabhängige Reproduktionen bleiben unterscheidbar.
+
+**Nächster Betriebs-Meilenstein:** manueller Scan-/Speichertest; danach explizit geplanter stündlicher KI-Lauf inklusive gesondertem Nachweis des unbeaufsichtigten GitHub-Schreibens.

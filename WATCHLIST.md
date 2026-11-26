@@ -1,19 +1,30 @@
-# WATCHLIST.md – beobachtete Quell-Repositories
+# WATCHLIST.md — Repository-Verzeichnis
 
-Diese Liste entscheidet **welche** Repositories beobachtet werden. Der zu lesende Branch wird **bei jedem Lauf dynamisch aus `default_branch` der GitHub-Repository-Metadaten** bestimmt. Nur dessen Commits sind im Scope. Die untenstehenden Branch-Namen sind **keine Konfiguration**, sondern ausschließlich als initialer Befund in `state/scan-state.json` festgehalten.
+**Autorität:** Diese Datei entscheidet **welche** Quellen geprüft werden; der tatsächlich zu lesende Branch ist **immer** der zur Laufzeit über GitHub abgefragte `default_branch`. Die zuletzt beobachteten Branch-Namen und SHA-Cursor stehen ausschließlich in `state/scan-state.json`.
 
-| Priorität | Repository | Begründung |
-| --- | --- | --- |
-| Hoch | [Marvisak/VIctory](https://github.com/Marvisak/VIctory) | Ursprünglicher VIctory-Kompatibilitäts-Layer |
-| Hoch | [avatarmanz/VIctory-7900XTX](https://github.com/avatarmanz/VIctory-7900XTX) | AMD-GPU-/Renderer-Performance; dokumentierte Benchmark-Vergleiche |
-| Hoch | [LooperSalty/AnyXboxX](https://github.com/LooperSalty/AnyXboxX) | Integrierter VIctory-Fork mit längeren Laufzeit-Messungen |
-| Hoch | [fxceless/victory-fork](https://github.com/fxceless/victory-fork) | Häufige technische Renderer-/Shader-/Speicher-Optimierungen |
-| Hoch | [iLucasRT/VInAMD](https://github.com/iLucasRT/VInAMD) | AMD-spezifische Laufzeit-/Leistungsdaten |
-| Mittel | [xcl-dev/xcl](https://github.com/xcl-dev/xcl) | Allgemeine Xbox-Series-Kompatibilitätsschicht |
-| Mittel | [proneonn/Vertex](https://github.com/proneonn/Vertex) | Grafik- und Stabilitätsmessungen anderer Hardware |
-| Mittel | [Gamination/victory-4060](https://github.com/Gamination/victory-4060) | VRAM-Verwaltung; **Standardbranch bei Einrichtung: `work`** |
-| Mittel | [ubiquitarianism/leonida](https://github.com/ubiquitarianism/leonida) | Alternativer Portierungs-/Recompilation-Ansatz |
+## Feldvertrag
 
-**Umfang:** Nur neue Commits nach dem je Repository gespeicherten Cursor auf dem aktuellen Standardbranch. Keine Scans anderer Branches oder offener PRs. Bereits gemergte PRs dürfen als Quelle eines im Standardbranch enthaltenen Commits verlinkt werden.
+| Spalte | Werte / Semantik |
+| --- | --- |
+| Repository | Eindeutiges kanonisches `owner/name`, mit Link |
+| Tier | `P1` = in jedem Stundenlauf vorrangig; `P2` = danach, ohne Commits zu überspringen |
+| Status | `ACTIVE` = prüfen; `PAUSED` = nicht prüfen, Cursor behalten; `RETIRED` = nur historische Zuordnung |
+| Fokus | Technischer Bereich, kein Erfolgsversprechen |
 
-**Erweiterung:** Weitere Repositories nur ergänzen, wenn sie eigenständige relevante Entwicklungen zeigen. Bloße Mirrors/Kopien erhalten keine eigene Priorität. Für ein neu aufgenommenes Repository einen Bootstrap-SHA auf dessen aktuellem Standardbranch erfassen; alte Historie nur nach ausdrücklichem separatem Auftrag prüfen.
+## Beobachtete Quellen
+
+| Repository | Tier | Status | Fokus |
+| --- | --- | --- | --- |
+| [Marvisak/VIctory](https://github.com/Marvisak/VIctory) | P1 | ACTIVE | Upstream-GPU-/Runtime-Schicht |
+| [avatarmanz/VIctory-7900XTX](https://github.com/avatarmanz/VIctory-7900XTX) | P1 | ACTIVE | AMD-Renderer, Frametime |
+| [LooperSalty/AnyXboxX](https://github.com/LooperSalty/AnyXboxX) | P1 | ACTIVE | Integrierter Runtime-Stand, längere Stabilitätstests |
+| [fxceless/victory-fork](https://github.com/fxceless/victory-fork) | P1 | ACTIVE | Renderer, Shader, CPU-/GPU-Speicher |
+| [iLucasRT/VInAMD](https://github.com/iLucasRT/VInAMD) | P1 | ACTIVE | AMD-Tuning und Benchmark-Läufe |
+| [xcl-dev/xcl](https://github.com/xcl-dev/xcl) | P2 | ACTIVE | Alternative Xbox-Series-Kompatibilität |
+| [proneonn/Vertex](https://github.com/proneonn/Vertex) | P2 | ACTIVE | Rendering, Abstürze, GPU-Diagnostik |
+| [Gamination/victory-4060](https://github.com/Gamination/victory-4060) | P2 | ACTIVE | Speicherverwaltung, begrenzter VRAM |
+| [ubiquitarianism/leonida](https://github.com/ubiquitarianism/leonida) | P2 | ACTIVE | Alternativer Recompilation-Ansatz |
+
+## Änderungsvertrag
+
+Neue Projekte nur bei nachvollziehbar eigenständiger technischer Arbeit aufnehmen; reine Kopien/Mirrors ausschließen. Bei Aufnahme zugleich einen Bootstrap-Cursor für den **aktuellen Default-Branch-HEAD** in `state/scan-state.json` speichern. Bis zu diesem SHA wird **keine** rückwirkende Auswertung behauptet. Statuswechsel dürfen die vorhandene Cursor-Historie nicht löschen. Bei Umbenennung/Transfer GitHub-Identität prüfen und keine doppelte Repository-Zeile erzeugen.

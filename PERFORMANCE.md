@@ -1,21 +1,42 @@
-# PERFORMANCE.md – Leistungsübersicht
+# PERFORMANCE.md — Abgeleitete Performance-Übersicht
 
-Diese Datei ist eine **abgeleitete Sicht auf die bestätigten Funde** in [`FINDINGS.md`](FINDINGS.md). Sie ist **kein eigenständiges Register** und enthält keine ungeprüften Sieger.
+**Nur Darstellung.** Quelle jeder Tabellenzeile ist ein vorhandener Datensatz in [`FINDINGS.md`](FINDINGS.md). Diese Datei darf keine neuen Messwerte oder unreferenzierten Spitzenreiter erfinden.
 
-## Größte gemessene FPS-/Frametime-Verbesserungen
+## Ranglistenvertrag
 
-_Noch keine qualifizierten Funde registriert._
+| Feld | Semantik |
+| --- | --- |
+| Rank | Rang **innerhalb** ausreichend vergleichbarer Hardware-/Szenen-/Qualitätsgruppe |
+| Finding | Verlinkte `PERF-XXXX`-ID |
+| Before → After | Werte wie im kanonischen Fund |
+| Gain | Korrekt umgerechnete absolute und ggf. relative Verbesserung |
+| Context | GPU, Szene/Profil, Auflösung und Bildqualität |
+| Evidence | `AUTHOR_MEASURED` oder `INDEPENDENT_REPRODUCED` |
 
-## Größte gemessene RAM-/VRAM-Einsparungen
+**Keine gruppenübergreifende Gesamtkrone.** Entwickler-Messungen nicht als unabhängig reproduziert ausgeben. Abweichende Auflösung/GPU/Profil oder aktivierte Frame Generation erfordern getrennte Gruppen oder eine ungerankte Tabelle.
 
-_Noch keine qualifizierten Funde registriert._
+## FPS / Frametime — vergleichbare Gruppen
 
-## Belegte Stabilitätsverbesserungen
+| Rank | Finding | Before → After | Gain | Context | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| — | Noch kein qualifizierter Fund | — | — | — | — |
 
-_Noch keine qualifizierten Funde registriert._
+## RAM / VRAM — gemessene Einsparungen
 
-## Vergleichsregeln
+| Rank | Finding | Before → After | Gain | Context | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| — | Noch kein qualifizierter Fund | — | — | — | — |
 
-Unterschiedliche Hardware, Szenen, Spielprofile, Grafikqualität, Frame-Generation-Einstellungen oder Testdauer **nicht zu einer scheinbar vergleichbaren globalen Rangliste vermischen**. Ein schnellster Einzel-Szenenwert ist nicht automatisch die insgesamt beste und stabilste Portierung. Jede später genannte Spitzenposition mit Beleg und Einschränkungen verknüpfen.
+## Stabilität / Ladeverhalten — quantifizierte Verbesserungen
 
-**Initialzustand:** Die Watchlist beinhaltet Kandidaten, aber noch keinen auf Basis dieses Registers bestätigten Gesamtsieger. Keine alten oder lediglich behaupteten Zahlen als bestätigte neue Optimierungen übernehmen.
+| Rank | Finding | Before → After | Gain | Context | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| — | Noch kein qualifizierter Fund | — | — | — | — |
+
+## Referenzportierungen
+
+| Vergleichsgruppe | Führender belegter Kandidat | Mess- und Szenenbeleg | Einschränkung |
+| --- | --- | --- | --- |
+| Noch keine vergleichbare Gruppe | **Kein Sieger bestimmt** | Keine qualifizierten Funde seit dem Bootstrap | Einzelne README-Höchstwerte reichen nicht aus |
+
+**Regel:** Ein Fund beschreibt eine **relative** Verbesserung. Daraus allein folgt nicht, dass die gesamte Portierung insgesamt die höchste FPS oder beste Stabilität bietet. Spitzenkandidaten nur mit direkt vergleichbaren Gesamttests nennen und auf den belegenden Fund verweisen; andernfalls offen lassen.
