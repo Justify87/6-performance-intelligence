@@ -24,18 +24,18 @@
     },
     "LooperSalty/AnyXboxX": {
       "default_branch": "main",
-      "last_scanned_sha": "5a08a334ef216eff98d2c7d9a9166f94c9ef70ed",
+      "last_scanned_sha": "b62053fe70078deac140ec43039d7ce0af3c6b17",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
+      "last_completed_scan_at": "2026-11-27T11:20:13.758Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "fxceless/victory-fork": {
       "default_branch": "main",
-      "last_scanned_sha": "4c60466140f4bccd2252427b6f2cfbc658c16906",
+      "last_scanned_sha": "9a9091d180f044726463d3db819808086daeebae",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
+      "last_completed_scan_at": "2026-11-27T11:20:13.758Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -69,9 +69,9 @@
     },
     "ubiquitarianism/leonida": {
       "default_branch": "main",
-      "last_scanned_sha": "d1dff7949be62b6609c3c2ca937df7f50fbf1305",
+      "last_scanned_sha": "63185f4a35961916afbdc24b2ae989cbe88892be",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
+      "last_completed_scan_at": "2026-11-27T11:20:13.758Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -90,9 +90,9 @@
       "last_scanned_sha": "6ee878d8cd500d3a0b2eabe36d652775488ae25d",
       "cursor_origin": "bootstrap_anchor",
       "last_completed_scan_at": null,
-      "status": "READY",
-      "pending_target_sha": null,
-      "last_error": null
+      "status": "BLOCKED",
+      "pending_target_sha": "e04217f4f2e0b0280d9e087891b5ae2afb29e8c6",
+      "last_error": "G2 vollständig enumeriert (83 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
     },
     "Belobug/VIctory-Belobug-AMD": {
       "default_branch": "a-publier",
@@ -117,15 +117,15 @@
       "last_scanned_sha": "6d813b461f8442849fd503b7c054eee18aa0f21f",
       "cursor_origin": "verified_scan",
       "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
-      "status": "READY",
-      "pending_target_sha": null,
-      "last_error": null
+      "status": "BLOCKED",
+      "pending_target_sha": "42b95b990f2dd05c34cf174f35b81df07a714cd7",
+      "last_error": "G2 vollständig enumeriert (113 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
     },
     "ZigZagBoi1/ScarlettPort": {
       "default_branch": "main",
-      "last_scanned_sha": "de83fcff64af9dcfa38999acda83a44df22847b1",
+      "last_scanned_sha": "d0c0e587cef39e3cfdcb89e1ac04e445021d08df",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
+      "last_completed_scan_at": "2026-11-27T11:20:13.758Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -141,27 +141,27 @@
     },
     "uiliannn/VItoriaBr": {
       "default_branch": "main",
-      "last_scanned_sha": "1361e190b7f46df996f00ea1b540ecf66785127f",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "15779f8197fe846b0cdf4509c15a8ef00433e216",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-27T11:20:13.758Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "stellarr-studio/kelvaroq": {
       "default_branch": "main",
-      "last_scanned_sha": "e062a82e04853bbcae281d166980e0a9b65c975a",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "92606ea7f5da5bab74e4eee7f3045b060c7020a8",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-27T11:20:13.758Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "PastiiJay/klbf-lab": {
       "default_branch": "main",
-      "last_scanned_sha": "0a8c5777fbbcab6409c142b0bc1ad7081212fac4",
+      "last_scanned_sha": "c2a04625e608fd82418d941f70fbecdf986d6bfc",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
+      "last_completed_scan_at": "2026-11-27T11:20:13.758Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -198,27 +198,27 @@
       "last_scanned_sha": "96a66c55b94e66ea0a372fc3d0133d2fd40cb376",
       "cursor_origin": "verified_scan",
       "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
-      "status": "READY",
-      "pending_target_sha": null,
-      "last_error": null
+      "status": "BLOCKED",
+      "pending_target_sha": "34b4dfed3524178efeed044514499ef1b5f0cb36",
+      "last_error": "G2 vollständig enumeriert (96 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
     },
     "ProjectLeonidaL/leonida": {
       "default_branch": "main",
       "last_scanned_sha": "f3c94cab29da5bda14b784ecec1d81b23790a9b7",
       "cursor_origin": "verified_scan",
       "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
-      "status": "READY",
-      "pending_target_sha": null,
-      "last_error": null
+      "status": "BLOCKED",
+      "pending_target_sha": "eac12160287bd4e8831869c349ba50420183f3b0",
+      "last_error": "G2 vollständig enumeriert (58 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
     },
     "brcly/TuxBox": {
       "default_branch": "main",
       "last_scanned_sha": "12e4b064a5ca2a60c9d9503ae3412793a9fa3844",
       "cursor_origin": "verified_scan",
       "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
-      "status": "READY",
-      "pending_target_sha": null,
-      "last_error": null
+      "status": "BLOCKED",
+      "pending_target_sha": "95480b5501becc4f9b105863baf08f8a43b6a9a0",
+      "last_error": "G2 vollständig enumeriert (53 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
     },
     "sammwyy/xvalkyrie": {
       "default_branch": "main",
@@ -234,9 +234,9 @@
       "last_scanned_sha": "bf99e728b2fa89c3550d51e07626c0da9bd6ec47",
       "cursor_origin": "bootstrap_anchor",
       "last_completed_scan_at": null,
-      "status": "READY",
-      "pending_target_sha": null,
-      "last_error": null
+      "status": "BLOCKED",
+      "pending_target_sha": "7772921be1bf4cbd9198a1b7f252a72ccdd3bd08",
+      "last_error": "G2 vollständig enumeriert (121 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
     },
     "ranveersoni98/Xenora": {
       "default_branch": "main",
@@ -276,5 +276,5 @@
     }
   },
   "state_contract": "A cursor advances only after proving complete enumeration and reviewing the corresponding default-branch interval, and atomically publishing findings and state without losing any repository files.",
-  "last_monitor_run_at": "2026-11-27T00:02:02.888Z"
+  "last_monitor_run_at": "2026-11-27T11:20:13.758Z"
 }
