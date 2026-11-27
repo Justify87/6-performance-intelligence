@@ -264,6 +264,15 @@
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
+    },
+    "trustno1-coder/VIctory-NVIDIA": {
+      "default_branch": "main",
+      "last_scanned_sha": "959dcaf609052554e41d1188043820242437a070",
+      "cursor_origin": "bootstrap_anchor",
+      "last_completed_scan_at": null,
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
     }
   },
   "state_contract": "A cursor advances only after proving complete enumeration and reviewing the corresponding default-branch interval, and atomically publishing findings and state without losing any repository files.",
