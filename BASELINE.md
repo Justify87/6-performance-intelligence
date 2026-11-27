@@ -20,6 +20,26 @@
 
 Der Reference SHA fixiert den ausgewählten Quellstand und enthält die Messdokumentation. Er ist **kein unabhängig verifizierter Benchmark-Build-SHA**; die README benennt nicht für alle Messreihen den exakten Build-Hash. Der Compare vom Code-Stand 3406192 bis zum Anker zeigt ausschließlich Änderungen an README.md. Der Anker bleibt auch bei neuen Commits des Baseline-Repositories unverändert.
 
+## Technologischer Kompatibilitäts- und Integrationsvertrag
+
+**Zielarchitektur:** native Windows-x64-Ausführung des Gast-x86-64-Codes mit bestehendem VIctory-Loader, HLE, D3D12-Renderer, RDNA-Shaderübersetzung, GPU-/CPU-Speichermodell, Formaten und Pipeline-/Cache-System am Reference SHA. AMD ist die Referenzmesshardware, keine Bindung der Integrationsbasis an einen GPU-Hersteller. NVIDIA-/Intel-spezifische Optimierungen sind zulässig, wenn sie als bedingter Pfad in der bestehenden Architektur laufen und andere unterstützte Pfade nicht beschädigen. Wine-/Linux-/macOS-spezifische Effekte ohne belegte Wirkung oder Mechanismus im nativen Windows-Zielpfad sind außerhalb des Integrationsziels; dort gemessene plattformunabhängige Mechanismen können mit entsprechendem Semantiknachweis relevant bleiben.
+
+**Definition:** Eine Optimierung ist technologisch kompatibel, wenn ihre konkrete Ursache, Ausführungssemantik, Schnittstellen, Abhängigkeiten und technischen Voraussetzungen mit mindestens einem bestehenden Subsystem am fixierten Reference SHA nachweislich vereinbar sind oder durch begrenzte Anpassungen vereinbar gemacht werden können. Dabei bleiben grundlegende Zielplattform und Architektur sowie die funktionalen, qualitativen, Sicherheits- und Synchronisationsverträge der Baseline erhalten. Ein Quell-Repository ist als Quelle geeignet, wenn es mindestens einen solchen konkret belegten Teilbereich mit grundsätzlich zulässiger Übernahmelizenz besitzt. Die Quelleneinstufung beweist nicht die Kompatibilität aller Commits.
+
+| Subsystem | Konkreter Anschlussmaßstab |
+| --- | --- |
+| CPU / Loader / HLE | Native x86-64-/PE- und Win32-Semantik; passende ABI, TLS, Import-/Thread-/Speicherverträge. Keine neue CPU-Emulation oder AOT-Runtime voraussetzen. |
+| GPU / Renderer | D3D12- bzw. Xbox-D3D12-Übersetzung mit gleichwertigen Command-, Descriptor-, Queue-, Barrier-, Fence-, Residency- und Lebensdauerverträgen. Andere Backends nur bei konkret isolierbarem, gleichwertigem Teilmechanismus. |
+| Shader / Indirect | RDNA-Gastsemantik, HLSL/DXIL oder nachweislich äquivalente isolierte Transformation, identische ABI, Layouts, Wave-/Gruppen- und Budgetsemantik. |
+| Formate / I/O | Gleiche Input-/Output-Verträge, z. B. BCPack-BCn-Dekodierung oder RDNA2-Layout, unveränderte verlustfreie bzw. funktional gleiche Ausgabe; keine bloß ähnlich bezeichnete Kompression. |
+| Cache / Worker / Speicher | Gleiche Funktion und Lebensdauer, gültige Schlüssel-/Invalidierungs-, Publikations-, Allokations-, Fehler- und Synchronisationsverträge. Keine Einführung einer nicht benötigten fremden Infrastruktur. |
+
+Zulässig sind lokale Patches, Anpassung vorhandener Schnittstellen, begrenzte Hilfsmodule und abgestimmte Änderungen verwandter Komponenten, auch eine begrenzte Portierung aus einer anderen Programmiersprache. Unzulässig als regulärer Integrationskandidat sind der Austausch oder grundlegende Neubau von Renderer, Shader-Recompiler, Loader/Runtime oder Speichermodell, ein Plattformwechsel oder eine umfangreiche Nachimplementierung fremder Architektur. Kein willkürliches Zeilen-/Zeitlimit: Nachweis anhand der tatsächlich betroffenen Schnittstellen und Abhängigkeiten. Gemeinsame Sprache, API, Codefamilie oder abstrakte Idee allein sind kein Nachweis.
+
+**Lizenz separat:** Technologische Kompatibilität ist keine Lizenzfreigabe. Für die beabsichtigte Übernahme muss die am betroffenen Code geltende Lizenz mit GPL-3.0 vereinbar sein und die Herkunft nachvollziehbar sein. GPL-2.0-only ist für eine Codekombination unter GPL-3.0 ohne zusätzliche kompatible Erlaubnis gesperrt; separat lizenzierte Teilbereiche sind separat zu prüfen. Deklarierte GPL-3.0(-or-later), MIT oder Apache-2.0 können grundsätzlich anschlussfähig sein, unter Beachtung ihrer Bedingungen und Drittkomponenten. Keine proprietären Spiel-/SDK-Daten, keine unbelegte Rechteübernahme; keine Vermutung einer zulässigen eigenständigen Neuimplementierung als Freigabe. Vollständige Einzelpatch-Lizenzklärung vor tatsächlicher Integration bleibt Pflicht.
+
+Technische Passung ist ferner von empirischer Performance-Evidenz, tatsächlicher Neuartigkeit und Zusatznutzen zu trennen. Bereits vorhandene äquivalente Mechanismen sind kein zusätzlicher Gewinn; bei Paketmessungen und abweichenden Hardware-/Plattformbedingungen keine isolierte oder kumulierte Baseline-Wirkung behaupten. Die Klassifikation der Quellen steht nur in WATCHLIST, die konkreter Findings nur in FINDINGS; die Ablauf- und Wechselregeln stehen in AGENTS.
+
 ## Dokumentierte Leistung
 
 Quelle: [versionierte README](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/README.md#where-it-stands-2026-11-26). Windows 11, i9-12900K, RX 7900 XTX, 64 GB RAM; je 270 s in einer Stadtszene mit Stehen, Gehen und Kameradrehung. Renderer-Patches 1, 2, 5, 6 und 7 aktiviert. Werte vom Projekt berichtet, nicht selbst reproduziert.
