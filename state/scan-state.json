@@ -87,12 +87,12 @@
     },
     "R0Y00/Xbox2Windows": {
       "default_branch": "main",
-      "last_scanned_sha": "6ee878d8cd500d3a0b2eabe36d652775488ae25d",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
-      "status": "BLOCKED",
-      "pending_target_sha": "e04217f4f2e0b0280d9e087891b5ae2afb29e8c6",
-      "last_error": "G2 vollständig enumeriert (83 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
+      "last_scanned_sha": "e04217f4f2e0b0280d9e087891b5ae2afb29e8c6",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-27T11:29:47.891Z",
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
     },
     "Belobug/VIctory-Belobug-AMD": {
       "default_branch": "a-publier",
@@ -195,12 +195,12 @@
     },
     "ThatRecompDev/five-star-recomp": {
       "default_branch": "main",
-      "last_scanned_sha": "96a66c55b94e66ea0a372fc3d0133d2fd40cb376",
+      "last_scanned_sha": "34b4dfed3524178efeed044514499ef1b5f0cb36",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
-      "status": "BLOCKED",
-      "pending_target_sha": "34b4dfed3524178efeed044514499ef1b5f0cb36",
-      "last_error": "G2 vollständig enumeriert (96 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
+      "last_completed_scan_at": "2026-11-27T11:29:47.891Z",
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
     },
     "ProjectLeonidaL/leonida": {
       "default_branch": "main",
@@ -276,5 +276,5 @@
     }
   },
   "state_contract": "A cursor advances only after proving complete enumeration and reviewing the corresponding default-branch interval, and atomically publishing findings and state without losing any repository files.",
-  "last_monitor_run_at": "2026-11-27T11:20:13.758Z"
+  "last_monitor_run_at": "2026-11-27T11:29:47.891Z"
 }
