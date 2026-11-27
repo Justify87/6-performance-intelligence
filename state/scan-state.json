@@ -114,12 +114,12 @@
     },
     "DoubleGhosty/cool_fox": {
       "default_branch": "main",
-      "last_scanned_sha": "6d813b461f8442849fd503b7c054eee18aa0f21f",
+      "last_scanned_sha": "42b95b990f2dd05c34cf174f35b81df07a714cd7",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
-      "status": "BLOCKED",
-      "pending_target_sha": "42b95b990f2dd05c34cf174f35b81df07a714cd7",
-      "last_error": "G2 vollständig enumeriert (113 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
+      "last_completed_scan_at": "2026-11-27T11:38:34.266Z",
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
     },
     "ZigZagBoi1/ScarlettPort": {
       "default_branch": "main",
@@ -276,5 +276,5 @@
     }
   },
   "state_contract": "A cursor advances only after proving complete enumeration and reviewing the corresponding default-branch interval, and atomically publishing findings and state without losing any repository files.",
-  "last_monitor_run_at": "2026-11-27T11:32:31.042Z"
+  "last_monitor_run_at": "2026-11-27T11:38:34.266Z"
 }

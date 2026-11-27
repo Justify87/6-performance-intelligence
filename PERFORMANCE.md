@@ -25,6 +25,8 @@ Konkrete zusätzliche Mechanismen mit zurechenbarer Messung und grundsätzlich b
 | FPS / Frametime | — | [PERF-0007](FINDINGS.md#perf-0007--rt-submission-ordering-and-forwarded-fills) | 131,1 ms → 118,7 ms | −12,4 ms (−9,5 %) | Series X 4K/1440p, RT an, Stadt gehend; RX 7900 XTX laut Projekt-Testsystem; keine Baseline-Messung | `AUTHOR_MEASURED` |
 | Stabilität / Laden | — | [PERF-0009](FINDINGS.md#perf-0009--retain-translated-shader-on-cache-miss) | 0,0002975 s → 0,0002209 s | −0,0000766 s (−25,7 %) | Synthetische Cache-Miss-Latenz je 64-KiB-Lookup, Wine/ext4, i9-14900KS; keine Spiel-Ladezeit | `AUTHOR_MEASURED` |
 | FPS / Frametime | — | [PERF-0014](FINDINGS.md#perf-0014--reserved-texture-pool-bypass) | 53,0 ms → 45,4 ms | −7,6 ms (−14,3 %) | RX 9060 XT 16 GB, Ryzen 7 7700X, Windows 11, gleiche AutoInput-Weltstrecke, je ein Lauf; Auflösung/Series-Profil unknown; Bild laut Autor unverändert | `AUTHOR_MEASURED` |
+| FPS / Frametime | — | [PERF-0012](FINDINGS.md#perf-0012--reserved-vram-room-for-large-upscaler-buffers) | 348,35 ms → 87,90 ms | −260,45 ms (−74,8 %) | RTX 4060 Laptop 8 GB, Series S, 512 MiB Cap, gleiches Startprofil; Paket aus logischem Minimum, Reserve und Alignment-Copies; OS/Auflösung unknown, keine Anker-Messung | `AUTHOR_MEASURED` |
+| Stabilität / Laden | — | [PERF-0015](FINDINGS.md#perf-0015--rdna4-size-query-reuse-workaround) | 29 → 0 fehlgeschlagene Pipeline-Erstellungen | −29 (−100 % der betroffenen Gruppe) | RX 9070 RDNA4, amdxc64 32.0.32029.2010; Compute-Pipeline-Erstellung, keine FPS-Messung | `AUTHOR_MEASURED` |
 
 ## Bedingte historische Befunde
 
@@ -34,7 +36,6 @@ Zusatznutzen, Attribution, Voraussetzung oder Übertragbarkeit müssen noch gekl
 | --- | --- | --- | --- | --- | --- | --- |
 | FPS / Frametime | 1 (RX 7900 XTX / Open World) | [PERF-0001](FINDINGS.md#perf-0001--descriptor-hot-page-fallback) | 82 ms → 72 ms | −10 ms mediane Frametime (−12,2 %) | Windows 11, RX 7900 XTX 24 GB, Ryzen 7 5800X3D; Open World/Stadt; exakte Auflösung unbekannt | `AUTHOR_MEASURED` |
 | FPS / Frametime | — | [PERF-0008](FINDINGS.md#perf-0008--lean-indirect-spread-dispatch) | 225 ms → 208 ms | −17 ms (−7,6 %) | RTX 3060 12 GB, stehend; neun 20-s-A/B-Paare; Auflösung unknown | `AUTHOR_MEASURED` |
-| FPS / Frametime | — | [PERF-0012](FINDINGS.md#perf-0012--reserved-vram-room-for-large-upscaler-buffers) | 55,7–70,8 ms → 0,10–0,28 ms | −55,42 bis −70,70 ms pro Pass (Bereichsdifferenz) | RTX 3060 12 GB, Series S, identische Skriptroute, Upscaler-Pass 8cbd7f5b; ein Boot je Zustand | `AUTHOR_MEASURED` |
 
 ## Historische Referenzbefunde
 
