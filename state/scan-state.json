@@ -231,12 +231,12 @@
     },
     "pragyaangaur/VIctory-macOS": {
       "default_branch": "main",
-      "last_scanned_sha": "bf99e728b2fa89c3550d51e07626c0da9bd6ec47",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
-      "status": "BLOCKED",
-      "pending_target_sha": "7772921be1bf4cbd9198a1b7f252a72ccdd3bd08",
-      "last_error": "G2 vollständig enumeriert (121 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
+      "last_scanned_sha": "7772921be1bf4cbd9198a1b7f252a72ccdd3bd08",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-27T11:45:39.044Z",
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
     },
     "ranveersoni98/Xenora": {
       "default_branch": "main",
@@ -276,5 +276,5 @@
     }
   },
   "state_contract": "A cursor advances only after proving complete enumeration and reviewing the corresponding default-branch interval, and atomically publishing findings and state without losing any repository files.",
-  "last_monitor_run_at": "2026-11-27T11:38:34.266Z"
+  "last_monitor_run_at": "2026-11-27T11:45:39.044Z"
 }
