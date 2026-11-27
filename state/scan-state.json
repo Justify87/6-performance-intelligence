@@ -204,21 +204,21 @@
     },
     "ProjectLeonidaL/leonida": {
       "default_branch": "main",
-      "last_scanned_sha": "f3c94cab29da5bda14b784ecec1d81b23790a9b7",
+      "last_scanned_sha": "eac12160287bd4e8831869c349ba50420183f3b0",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
-      "status": "BLOCKED",
-      "pending_target_sha": "eac12160287bd4e8831869c349ba50420183f3b0",
-      "last_error": "G2 vollständig enumeriert (58 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
+      "last_completed_scan_at": "2026-11-27T11:32:31.042Z",
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
     },
     "brcly/TuxBox": {
       "default_branch": "main",
-      "last_scanned_sha": "12e4b064a5ca2a60c9d9503ae3412793a9fa3844",
+      "last_scanned_sha": "95480b5501becc4f9b105863baf08f8a43b6a9a0",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
-      "status": "BLOCKED",
-      "pending_target_sha": "95480b5501becc4f9b105863baf08f8a43b6a9a0",
-      "last_error": "G2 vollständig enumeriert (53 neu erreichbare Commits); G3 Einzelcommit-/Evidenzreview in diesem Lauf nicht vollständig durchgeführt. Kein Cursor-Vorschub; gesamte Range ab gesichertem Cursor offen."
+      "last_completed_scan_at": "2026-11-27T11:32:31.042Z",
+      "status": "READY",
+      "pending_target_sha": null,
+      "last_error": null
     },
     "sammwyy/xvalkyrie": {
       "default_branch": "main",
@@ -276,5 +276,5 @@
     }
   },
   "state_contract": "A cursor advances only after proving complete enumeration and reviewing the corresponding default-branch interval, and atomically publishing findings and state without losing any repository files.",
-  "last_monitor_run_at": "2026-11-27T11:29:47.891Z"
+  "last_monitor_run_at": "2026-11-27T11:32:31.042Z"
 }
