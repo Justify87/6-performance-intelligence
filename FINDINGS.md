@@ -24,6 +24,13 @@
 | [PERF-0004](#perf-0004--three-copy-and-refresh-switches) | Gemeinsam gemessene Kopier-/Refresh-Optimierungen | `WORLD_FPS` | 12,7 FPS → 14,8 FPS | +2,1 FPS (+16,5 %) | `AUTHOR_MEASURED` |
 | [PERF-0005](#perf-0005--reduced-descriptor-heap-scan-cadence) | Seltener vollständiger Deskriptor-Heap-Scan | `WORLD_FPS` | 14,2 FPS → 15,2 FPS | +1,0 FPS (+7,0 %) | `AUTHOR_MEASURED` |
 | [PERF-0006](#perf-0006--asynchronous-copy-back-relay) | Asynchroner Copy-back-Relay (bereits in Baseline) | `FRAME_TIME_MS` | 274 ms → 126 ms | −148 ms (−54,0 %) | `AUTHOR_MEASURED` |
+| [PERF-0007](#perf-0007--rt-submission-ordering-and-forwarded-fills) | RT-Submission-Reihenfolge und Weiterleitung von Fills | `FRAME_TIME_MS` | 131,1 ms → 118,7 ms | −12,4 ms (−9,5 %) | `AUTHOR_MEASURED` |
+| [PERF-0008](#perf-0008--lean-indirect-spread-dispatch) | Indirekte Compute-Dispatches über einfache Signatur | `FRAME_TIME_MS` | 225 ms → 208 ms | −17 ms (−7,6 %) | `AUTHOR_MEASURED` |
+| [PERF-0009](#perf-0009--retain-translated-shader-on-cache-miss) | Shader-Cache-Miss ohne erneutes Lesen und Dekodieren | `LOAD_TIME_S` | 0,0002975 s → 0,0002209 s | −0,0000766 s (−25,7 %) | `AUTHOR_MEASURED` |
+| [PERF-0010](#perf-0010--wake-live-shader-worker-during-concurrent-jobs) | Shader-Worker bei parallelen Jobs sofort wecken | `LOAD_TIME_S` | 0,0504–0,0508 s → 0,0017–0,0024 s | −0,0480 bis −0,0491 s (konservative Bereichsdifferenz) | `AUTHOR_MEASURED` |
+| [PERF-0011](#perf-0011--wine-placeholder-reservation-tracking) | Wine-Placeholder-Tracking statt wiederholter Speicherabfragen | `FRAME_TIME_MS` | 362 ms → 38 ms | −324 ms (−89,5 %) | `AUTHOR_MEASURED` |
+| [PERF-0012](#perf-0012--reserved-vram-room-for-large-upscaler-buffers) | VRAM-Reserve für große Upscaler-Puffer | `FRAME_TIME_MS` | 55,7–70,8 ms → 0,10–0,28 ms | −55,42 bis −70,70 ms pro Pass (Bereichsdifferenz) | `AUTHOR_MEASURED` |
+| [PERF-0013](#perf-0013--vendor-specific-small-texture-pool-alignment) | 4-KiB-Texturpool-Alignment auf Nicht-AMD-GPUs | `VRAM_GIB` | 16,7 GiB → 13,3 GiB | −3,4 GiB (−20,4 %) | `AUTHOR_MEASURED` |
 
 ## Detaildatensätze
 
@@ -181,3 +188,136 @@ Der **isolierbar dokumentierte** Vergleich betrifft das Ein-/Ausschalten von Ren
 | Baseline integration | BASE-0001, `2de998014dc85ad68cd6422a250400c7084ace57`; `ALREADY_PRESENT`. [Baseline host.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/host.rs) enthält Relay und relay_exact (Stufe 2 bei unset/2), [shadow.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/shadow.rs) enthält standardmäßig aktiven Relay. Entsprechende Funktionen im [Quell-host.rs](https://github.com/ProjectLeonidaL/leonida/blob/1c5bd30911b19ee076d0187d60a80b2910de27bc/crates/leonida-gpu/src/host.rs) und [Quell-shadow.rs](https://github.com/ProjectLeonidaL/leonida/blob/2689d10a43fe401a9b0e2d74ae0dfab359ba9a87/crates/leonida-gpu/src/shadow.rs) geprüft; keine Behauptung identischer Gesamtleistung. |
 | Provenance / License | Default-Aktivierung c96b4f2 von fxceless; [Quell-Workspace](https://github.com/ProjectLeonidaL/leonida/blob/2689d10a43fe401a9b0e2d74ae0dfab359ba9a87/Cargo.toml) GPL-3.0-or-later; ursprünglicher Implementierungscommit nicht separat ermittelt. |
 | Adoptions | Technische Wirkung bereits in BASE-0001, `2de998014dc85ad68cd6422a250400c7084ace57`; kein neuer Port. |
+
+### PERF-0007 — RT submission ordering and forwarded fills
+
+| Feld | Inhalt |
+| --- | --- |
+| Status | `VERIFIED_AUTHOR` |
+| Origin repository | [avatarmanz/VIctory-7900XTX](https://github.com/avatarmanz/VIctory-7900XTX) |
+| Code commit(s) | [84917c34f63e88ba866e2fa45dc796385ba56f2c](https://github.com/avatarmanz/VIctory-7900XTX/commit/84917c34f63e88ba866e2fa45dc796385ba56f2c) |
+| Evidence commit(s) | [014d52dedf837d1ac660a0bd256c4704be9eeb40](https://github.com/avatarmanz/VIctory-7900XTX/commit/014d52dedf837d1ac660a0bd256c4704be9eeb40) |
+| Merged PR | n/a |
+| Subsystem / Mechanism | VICTORY_PORT_RT erzwingt die vorhandene Placed-Order und schneidet Submissions hinter abhängigen Kopien. Innerhalb derselben Liste liest forward_fill die passende Kopierquelle statt einer globalen Wartephase; konservative Ablehnung nicht auflösbarer Abhängigkeiten bleibt. |
+| Metric; Before; After; Delta | Stadt gehend: 131,1 → 118,7 ms (−12,4 ms; −9,5 %). Stadt stehend: 145,3 → 126,2 ms (−19,1 ms; −13,1 %). Boot gehend: 94,5 → 75,6 ms (−18,9 ms; −20,0 %); Boot stehend: 58,2 → 46,2 ms (−12,0 ms; −20,6 %). |
+| Test conditions | Series X, Ausgabe 4K/intern 1440p, RT an, Ports 1/2/5/6/7, -Walk, rts-3/2 und rts-5/4. Projekt-README nennt Windows 11, i9-12900K, RX 7900 XTX und 64 GB RAM als Testsystem; Einzelrun-Hardware und Dauer nicht separat angegeben. |
+| Evidence | AUTHOR_MEASURED: vier Vergleichswerte im Evidenzcommit; Bilder laut Autor wie Kontrolle, kein Crash; keine unabhängigen Rohdaten. |
+| Trade-offs | Opt-in; keine Langzeitmessung. RT-BVH-Walker weiter 56–60 ms GPU-Zeit pro Frame laut [d13e9e0](https://github.com/avatarmanz/VIctory-7900XTX/commit/d13e9e0c6713c419ed67ebeaf8ab07d90f8f0820); Directory-Lookup ohne messbaren Kostenanteil, keine zusätzliche Optimierung aus dem Benchmark ableiten. |
+| Integration | Placed-Order, Card-Step-Planung, Quellbereichsvalidierung und tatsächliche Copy-/Fill-Reihenfolge zusammen prüfen. |
+| Baseline integration | BASE-0001, [2de998014dc85ad68cd6422a250400c7084ace57](https://github.com/avatarmanz/VIctory-7900XTX/commit/2de998014dc85ad68cd6422a250400c7084ace57); `ADAPTATION_REQUIRED`: [crates/victory-gpu/src/host/card_steps.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/host/card_steps.rs) enthält placed_order/cut_for und BEHIND_PLACED; [crates/victory-gpu/src/host.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/host.rs) enthält noch kein forward_fill. Vorhandene Vorarbeiten erhalten, neue Quelle und Synchronisationsregeln ergänzen. |
+| Provenance / License | Original belegter Code-Commit 84917c3, identischer späterer Commit in cool_fox (gleiche Author-Zeit, spätere Committer-Zeit). [GPL-3.0-or-later Workspace](https://github.com/avatarmanz/VIctory-7900XTX/blob/84917c34f63e88ba866e2fa45dc796385ba56f2c/Cargo.toml); Drittkomponenten getrennt prüfen. |
+| Adoptions | [DoubleGhosty/cool_fox](https://github.com/DoubleGhosty/cool_fox/commit/f2e5852498cdef30629f811f51084fb356506da4) (Codeübernahme; keine eigene A/B-Messung). |
+
+### PERF-0008 — Lean indirect spread dispatch
+
+| Feld | Inhalt |
+| --- | --- |
+| Status | `VERIFIED_AUTHOR` |
+| Origin repository | [fxceless/victory-fork](https://github.com/fxceless/victory-fork) |
+| Code commit(s) | [a7ee5dfa46123b74176a3d3bd39dc5e22a18d666](https://github.com/fxceless/victory-fork/commit/a7ee5dfa46123b74176a3d3bd39dc5e22a18d666) |
+| Evidence commit(s) | [a7ee5dfa46123b74176a3d3bd39dc5e22a18d666](https://github.com/fxceless/victory-fork/commit/a7ee5dfa46123b74176a3d3bd39dc5e22a18d666) |
+| Merged PR | [#1352](https://github.com/fxceless/victory-fork/pull/1352) |
+| Subsystem / Mechanism | VICTORY_SPREAD_LEAN teilt bis 64 Records in einfache und Spread-Records auf, führt nur nötige Spread-Dispatches per Prädikation aus und behält große Batches auf dem alten Pfad. Keine Kürzung großer Dispatches auf 65.535 Gruppen. |
+| Metric; Before; After; Delta | Frame: 225 → 208 ms (−17 ms; −7,6 %). GPU-Zeit pro Frame: 108 → 91 ms (−17 ms; −15,7 % Differenz der zusammengefassten Werte); Median der gepaarten GPU-Differenzen separat −12,8 ms. |
+| Test conditions | RTX 3060 12 GB, stehend, neun Paare, Wechsel alle 20 s im selben A/B-Modus; CPU, exakte Szene, Auflösung und Profil unknown. WARP-Test: gleiche Group-IDs bei 100.000 Gruppen, gemischte Records. |
+| Evidence | AUTHOR_MEASURED: GPU-Zeit in jedem Paar niedriger; Code und Messung im selben erreichbaren Commit. |
+| Trade-offs | Vorbereitungszeit +4 ms; opt-in. Größere Batches behalten Spread-Signatur; Bildgleichheit und Dauerbetrieb nicht unabhängig geprüft. Komplettes Abschalten von DISPATCH_SPREAD führte laut PR bei 2 von 4 Runs zu Device Loss; nicht mit Lean gleichsetzen. |
+| Integration | Spread-ABI, Root-Constants, Clamp-Layout, Predicate und Shader-Group-ID-Semantik zusammenführen; nicht mit PERF-0003s Ein-Record-Clamp verwechseln. |
+| Baseline integration | BASE-0001, [2de998014dc85ad68cd6422a250400c7084ace57](https://github.com/avatarmanz/VIctory-7900XTX/commit/2de998014dc85ad68cd6422a250400c7084ace57); `ADAPTATION_REQUIRED`: [crates/victory-gpu/src/indirect.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/indirect.rs) und [crates/victory-gpu/src/draw.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/draw.rs) zeigen verwandten D3D12-Indirect-Pfad ohne Lean-Spread-Symbole; zuerst benötigten Spread-Dispatch-Pfad und Budget-/Diagnostik-Parität prüfen. |
+| Provenance / License | Code und Messung im Commit a7ee5df (Autor grosterr laut GitHub, PR #1352); [GPL-3.0-or-later Workspace](https://github.com/fxceless/victory-fork/blob/a7ee5dfa46123b74176a3d3bd39dc5e22a18d666/Cargo.toml); Vorarbeiten vor Integration prüfen. |
+| Adoptions | none recorded |
+
+### PERF-0009 — Retain translated shader on cache miss
+
+| Feld | Inhalt |
+| --- | --- |
+| Status | `VERIFIED_AUTHOR` |
+| Origin repository | [ProjectLeonidaL/leonida](https://github.com/ProjectLeonidaL/leonida) |
+| Code commit(s) | [3b4834f2573e4abb8307fb1a1f1c967c83c756d0](https://github.com/ProjectLeonidaL/leonida/commit/3b4834f2573e4abb8307fb1a1f1c967c83c756d0); ursprünglicher [Marvisak/VIctory bca3ecd](https://github.com/Marvisak/VIctory/commit/bca3ecd00a3e0cf4814e0061cafc510f0a286ba2) |
+| Evidence commit(s) | [e72f2b1a348b9f952a5c942800f37561fc250614](https://github.com/ProjectLeonidaL/leonida/commit/e72f2b1a348b9f952a5c942800f37561fc250614); [Korrektur der Ausreißer](https://github.com/ProjectLeonidaL/leonida/commit/ff305642ecaf2d4d7491fdd8701e72c5ca04b5c3) |
+| Merged PR | [#51](https://github.com/ProjectLeonidaL/leonida/pull/51) |
+| Subsystem / Mechanism | Übersetzter HostShader bleibt im Converter erhalten und wird bei Cache-Miss direkt zurückgegeben, statt neu geschriebene Datei zu lesen und zu dekodieren. Fehler beim Publizieren verwerfen den nutzbaren Shader nicht. |
+| Metric; Before; After; Delta | 64 KiB: 297,5 → 220,9 µs je Lookup (−76,6 µs; −25,7 %). 8 KiB: 276,3 → 204,8 µs (−25,9 %); 256 KiB: 541,5 → 330,2 µs (−39,0 %). Registermetrik LOAD_TIME_S bezeichnet hier ausschließlich die synthetische Cache-Lookup-Latenz. |
+| Test conditions | i9-14900KS, Pop!_OS 22.04/ext4, Proton 11/Wine 11, Rust 1.98.1 Windows Release, identische Adapter und realer Cache, synthetischer Clone statt Shader-Übersetzung. 12 gepaarte Runden, wechselnde Reihenfolge, 128 Lookups/Sample, 144 Samples einschließlich Hits, OS-Dateicache nicht geleert; keine GPU-Arbeit. |
+| Evidence | AUTHOR_MEASURED: Messwerte in versioniertem fork-notes.md, Ausgabe/gespeicherte Bytes/Hit-Miss-Zählung geprüft. |
+| Trade-offs | Cache-Hits: gepaarte Medianänderungen −1,0 %, −1,7 %, +1,1 %, kein Gewinn behauptet. Zwei langsamere gepatchte 8-KiB-Paare (korrigierter Bericht); einmalige Cache-Neubildung, native Windows-/Gameplay-Wirkung unknown. |
+| Integration | Vorhandenes Cache-Format, atomare Publikation, Fehler- und Refresh-Pfade, Fingerprint und Hit-/Miss-Diagnostik bewahren. |
+| Baseline integration | BASE-0001, [2de998014dc85ad68cd6422a250400c7084ace57](https://github.com/avatarmanz/VIctory-7900XTX/commit/2de998014dc85ad68cd6422a250400c7084ace57); `ADAPTATION_REQUIRED`: [crates/victory-gpu/src/shader_cache.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/shader_cache.rs) liest in cached_by die gerade geschriebene Datei erneut; zusätzlich SOURCE-/Stale-/Refresh-Pfade vorhanden, die der gemessene Leonida-Patch nicht unverändert abdeckt. |
+| Provenance / License | Upstream-Original bca3ecd geprüft; ProjektLeonidaL-Adaptation und eigene synthetische Messung im neuen Bereich. GPL-3.0-or-later laut bereits verankertem [Quell-Workspace](https://github.com/ProjectLeonidaL/leonida/blob/2689d10a43fe401a9b0e2d74ae0dfab359ba9a87/Cargo.toml). |
+| Adoptions | [AnyXboxX Vice-Tay-Import](https://github.com/LooperSalty/AnyXboxX/commit/7e3e672acbcbf7806496de3aa5a0c0b332631330) enthält laut [versioniertem shader_cache.rs](https://github.com/LooperSalty/AnyXboxX/blob/5a08a334ef216eff98d2c7d9a9166f94c9ef70ed/third_party/victory/crates/victory-gpu/src/shader_cache.rs) ebenfalls made-/Direktrückgabe und Stale-Pfade; keine separate Messung dieser Übernahme. |
+
+### PERF-0010 — Wake live shader worker during concurrent jobs
+
+| Feld | Inhalt |
+| --- | --- |
+| Status | `VERIFIED_AUTHOR` |
+| Origin repository | [brcly/TuxBox](https://github.com/brcly/TuxBox) |
+| Code commit(s) | [2f0473bd676422f7e4dd8ab5c2aded14a35eb8c8](https://github.com/brcly/TuxBox/commit/2f0473bd676422f7e4dd8ab5c2aded14a35eb8c8) |
+| Evidence commit(s) | [2f0473bd676422f7e4dd8ab5c2aded14a35eb8c8](https://github.com/brcly/TuxBox/commit/2f0473bd676422f7e4dd8ab5c2aded14a35eb8c8) |
+| Merged PR | [#283](https://github.com/brcly/TuxBox/pull/283) |
+| Subsystem / Mechanism | Ein inotify-Poll wartet zugleich auf neue Anfragen und eine Pipe für fertige Worker-Jobs. Ein laufender Compile verhindert nicht mehr die sofortige Bearbeitung neuer Requests; ohne inotify bleibt begrenzter Rescan. |
+| Metric; Before; After; Delta | Median der Reply-Latenz über je drei Runs: 50,4–50,8 → 1,7–2,4 ms (Bereichsdifferenz 48,0–49,1 ms; mindestens 95,2 %). LOAD_TIME_S bezeichnet hier isolierte Host-Request-Latenz, nicht Spielstart. |
+| Test conditions | 30 aufgezeichnete kurze ProjectScarlett-Requests neben einem langen Compute-Compile, vier Worker, reales xshader/DXC/dxv, drei Runs je Zustand; keine Guest-/GPU-Arbeit, CPU/GPU unknown. |
+| Evidence | AUTHOR_MEASURED: Code-Diff und Messung im selben Commit, neuer Regressionstest; 381 Python-Tests und No-GPU-Check laut Quelle bestanden. |
+| Trade-offs | Ohne parallelen Job 2,3–2,9 ms in beiden Zuständen, kein Gewinn. Keine volle GPU-Prüfung, Linux-inotify-Pfad; kein Gameplay-FPS-Nachweis. |
+| Integration | Benötigt den asynchronen dateibasierten Host-Worker und Benachrichtigung für neue Requests und Fertigstellungen; anderer Mechanismus als Guest-Reply-Polling PERF-0002. |
+| Baseline integration | BASE-0001, [2de998014dc85ad68cd6422a250400c7084ace57](https://github.com/avatarmanz/VIctory-7900XTX/commit/2de998014dc85ad68cd6422a250400c7084ace57); `UNKNOWN`: [crates/victory-gpu/src/pipeline/make.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/pipeline/make.rs) nutzt lokale Condvar-Signale/wait_timeout; kein gleichartiger TuxBox-Datei-IPC-Pfad nachgewiesen. Nur bei entsprechender Provider-Architektur sinnvoll. |
+| Provenance / License | NickStallman PR #283; [Apache-2.0-Lizenz](https://github.com/brcly/TuxBox/blob/2f0473bd676422f7e4dd8ab5c2aded14a35eb8c8/LICENSE); keine Aussage zu Drittkomponenten. |
+| Adoptions | none recorded |
+
+### PERF-0011 — Wine placeholder reservation tracking
+
+| Feld | Inhalt |
+| --- | --- |
+| Status | `VERIFIED_AUTHOR` |
+| Origin repository | [DoubleGhosty/cool_fox](https://github.com/DoubleGhosty/cool_fox) |
+| Code commit(s) | [f9d2da84941ef3204aeed5f0f097efb8bee3ece0](https://github.com/DoubleGhosty/cool_fox/commit/f9d2da84941ef3204aeed5f0f097efb8bee3ece0) |
+| Evidence commit(s) | [f9d2da84941ef3204aeed5f0f097efb8bee3ece0](https://github.com/DoubleGhosty/cool_fox/commit/f9d2da84941ef3204aeed5f0f097efb8bee3ece0) |
+| Merged PR | n/a |
+| Subsystem / Mechanism | Wenn Wine MemoryRegionInformationEx nicht unterstützt, beantwortet ein vom Runtime-Allocator gepflegter BTreeMap-Index Placeholder-Fragen; Reservierung und Freigabe aktualisieren ihn. Wiederholte VirtualQuery-Abfragen unter Wine-Lock entfallen. |
+| Metric; Before; After; Delta | Guard-Zeit beim Recording pro Frame: 362 → 38 ms (−324 ms; −89,5 %). Hole-Abfragen pro Frame: 10.210 → 17; erste Welt-Cinematic ~3 → ~5 FPS laut Quelle (gerundete Begleitwerte). |
+| Test conditions | Wine, Cold-Cache-Run, erste Welt-Cinematic; GPU, CPU, Profil, Auflösung, Wiederholungen und exakte Bildqualität unknown. Gleiche dokumentierte Abfrage-/Recording-Metrik; kein nativer Windows-Test. |
+| Evidence | AUTHOR_MEASURED: Vergleich und tatsächliche Watch-/XMem-Änderung in f9d2da8. |
+| Trade-offs | Keine Langzeit- oder Bildparitätsmessung. Vollständiges Reserve/Free-/Mapping-Tracking nötig; partielles Freigeben verwirft konservativ Einträge. Native Windows-Abfrage bleibt unverändert. |
+| Integration | Watch-/XMem-Reserve-/Freigabe-Verträge und Alias-Lebensdauer gemeinsam prüfen. |
+| Baseline integration | BASE-0001, [2de998014dc85ad68cd6422a250400c7084ace57](https://github.com/avatarmanz/VIctory-7900XTX/commit/2de998014dc85ad68cd6422a250400c7084ace57); `ADAPTATION_REQUIRED`: [crates/victory-gpu/src/watch.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/watch.rs) kennt Placeholder über NtQueryVirtualMemory Klasse 7, gibt bei Fehlschlag false zurück; kein Tracking-Fallback. Baseline ist native Windows-x64; Zusatznutzen dort nicht nachgewiesen, relevant für Wine. |
+| Provenance / License | Belegter Quellcommit f9d2da8; [GPL-3.0-or-later Workspace](https://github.com/DoubleGhosty/cool_fox/blob/f9d2da84941ef3204aeed5f0f097efb8bee3ece0/Cargo.toml); weitere Vorarbeiten nicht verifiziert. |
+| Adoptions | none recorded |
+
+### PERF-0012 — Reserved VRAM room for large upscaler buffers
+
+| Feld | Inhalt |
+| --- | --- |
+| Status | `VERIFIED_AUTHOR` |
+| Origin repository | [ZigZagBoi1/ScarlettPort](https://github.com/ZigZagBoi1/ScarlettPort) |
+| Code commit(s) | [f059bbf03963e8e407e4ca0d0d579239c89d26aa](https://github.com/ZigZagBoi1/ScarlettPort/commit/f059bbf03963e8e407e4ca0d0d579239c89d26aa) |
+| Evidence commit(s) | [f059bbf03963e8e407e4ca0d0d579239c89d26aa](https://github.com/ZigZagBoi1/ScarlettPort/commit/f059bbf03963e8e407e4ca0d0d579239c89d26aa); [versionierter README-Messabschnitt](https://github.com/ZigZagBoi1/ScarlettPort/blob/f059bbf03963e8e407e4ca0d0d579239c89d26aa/README.md#-new-in-v050) |
+| Merged PR | n/a |
+| Subsystem / Mechanism | SCARLETT_CARD_BIG_ROOM reserviert zusätzliche 256 MiB oberhalb des normalen Copy-Caps ausschließlich für Puffer ab 16 MiB. Ein 24-MB-Netzwerktensor des Upscalers passt in lokalen GPU-Speicher statt PCIe-Zugriff; normale Budgetgrenze bleibt. |
+| Metric; Before; After; Delta | GPU-Zeit pro Frame für Pass 8cbd7f5b: 55,7–70,8 → 0,10–0,28 ms; konservative Bereichsdifferenz 55,42–70,70 ms (mindestens 99,5 %). Weitere Pässe f4611739/f7fc6c98 laut Quelle unter 0,1 ms statt 43,7–50,0/34,7–40,1 ms. |
+| Test conditions | RTX 3060 12 GB, Ryzen 5 5600X, 32 GB RAM, Series S, gleiche geskriptete Route, 180 s Welt, jeweils ein Boot; 0.4.x gegen 0.5.0 Defaults, exakte Auflösung unknown. |
+| Evidence | AUTHOR_MEASURED: versionierte Tabelle und Code-Diff; derselbe namentlich identifizierte Pass, keine unabhängige Reproduktion. |
+| Trade-offs | Gesamtänderung umfasst auch Save- und Shader-Patches; 1,6 → 3,4 Welt-FPS und 244 → 178 s Boot sind nicht als isolierter Gewinn des VRAM-Mechanismus zu werten. P95-Frame verschlechtert 4.250 → 4.464 ms; Cache-Neubildung, Reserve verdrängt ggf. andere Kopien. Bildparität nicht separat gemessen. |
+| Integration | Zusätzliche Größenklasse und Budget-/Copy-Lebensdauer mit bestehender VRAM-Admission abstimmen; keine pauschale Reserve ohne Profilierung. |
+| Baseline integration | BASE-0001, [2de998014dc85ad68cd6422a250400c7084ace57](https://github.com/avatarmanz/VIctory-7900XTX/commit/2de998014dc85ad68cd6422a250400c7084ace57); `ADAPTATION_REQUIRED`: [crates/victory-gpu/src/shadow.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/shadow.rs) besitzt card_limits/card_room_for, globale Buffer-Reserve und Budgetprüfung; keine exklusive Zusatzreserve für Puffer ab 16 MiB. Bereits vorhandene Budgetregeln und gegebenenfalls größere vorhandene Cap-Einstellungen berücksichtigen. |
+| Provenance / License | Integrierter ScarlettPort-Codecommit f059bbf; [UPSTREAM.md](https://github.com/ZigZagBoi1/ScarlettPort/blob/f059bbf03963e8e407e4ca0d0d579239c89d26aa/engine/UPSTREAM.md) nennt GPL-3.0-or-later und VIctory/fxceless-Abstammung; einzelne Drittkomponenten prüfen. |
+| Adoptions | none recorded |
+
+### PERF-0013 — Vendor-specific small texture pool alignment
+
+| Feld | Inhalt |
+| --- | --- |
+| Status | `VERIFIED_AUTHOR` |
+| Origin repository | [TaynanGT/Vice-Tay](https://github.com/TaynanGT/Vice-Tay) |
+| Code commit(s) | [7d62e536e09234289a77474db3f830a44c7e01e3](https://github.com/TaynanGT/Vice-Tay/commit/7d62e536e09234289a77474db3f830a44c7e01e3); neuer In-Scope-Import [7e3e672acbcbf7806496de3aa5a0c0b332631330](https://github.com/LooperSalty/AnyXboxX/commit/7e3e672acbcbf7806496de3aa5a0c0b332631330) |
+| Evidence commit(s) | [7d62e536e09234289a77474db3f830a44c7e01e3](https://github.com/TaynanGT/Vice-Tay/commit/7d62e536e09234289a77474db3f830a44c7e01e3); [importierter Messbericht](https://github.com/LooperSalty/AnyXboxX/blob/7e3e672acbcbf7806496de3aa5a0c0b332631330/third_party/victory/docs/findings-rtx4090.md) |
+| Merged PR | [Vice-Tay #45](https://github.com/TaynanGT/Vice-Tay/pull/45); [AnyXboxX #454](https://github.com/LooperSalty/AnyXboxX/pull/454) |
+| Subsystem / Mechanism | Kleine gepoolte Texturen (bis 64 KiB) werden auf geeigneten Nicht-AMD-Karten an 4-KiB- statt 64-KiB-Grenzen platziert; AMD behält die konservative 64-KiB-Strategie. Verwendet die bereits vorhandene Opt-in-Mechanik. |
+| Metric; Before; After; Delta | Max. Card Memory 16,7 → 13,3 GiB (−3,4 GiB; −20,4 %). Mediane private RAM-Belegung 32,3 → 29,1 GiB (−3,2 GiB; −9,9 %). Quelle schreibt GB; versioniertes [Panel](https://github.com/TaynanGT/Vice-Tay/blob/a2523483dc8f5f7378d1f41160d914648fbab649/crates/victory-gpu/src/host/panel.rs) rechnet Bytes durch 2^30; keine höhere Genauigkeit behauptet. |
+| Test conditions | RTX 4090, Ryzen 9 9950X3D, Windows, Series S, 30 min, gleicher Testkontext laut findings-rtx4090.md; exakte Auflösung unknown. Je ein Lauf; FPS-Mediane 22,7/22,1, 1%-Low 17,0/18,0 laut PR. |
+| Evidence | AUTHOR_MEASURED: Originalcommit enthält absolute Werte und Code-Diff; Import-Code am neuen Default-Branch-HEAD bestätigt. |
+| Trade-offs | Kein FPS-Gewinn; beide Runs ohne Device Loss. Zuvor zwei Device Losses bei kleinen Placements auf RX 7900 XTX; AMD-Ausnahme ist entscheidend, keine Übertragung auf AMD erzwingen. |
+| Integration | D3D12-Small-Resource-Placement-Support und herstellerspezifische Stabilität prüfen; keine Änderung von Texturauflösung oder Mips. |
+| Baseline integration | BASE-0001, [2de998014dc85ad68cd6422a250400c7084ace57](https://github.com/avatarmanz/VIctory-7900XTX/commit/2de998014dc85ad68cd6422a250400c7084ace57); `ALREADY_PRESENT`: [crates/victory-gpu/src/pool.rs](https://github.com/avatarmanz/VIctory-7900XTX/blob/2de998014dc85ad68cd6422a250400c7084ace57/crates/victory-gpu/src/pool.rs) besitzt VICTORY_POOL_SMALL=1 für dieselbe Platzierung; standardmäßig aus. Automatische Herstellerwahl ist eine Anpassung, aber der gemessene Mechanismus ist bereits per Schalter testbar; auf AMD bewusst nicht einschalten. |
+| Provenance / License | Vice-Tay Originalcommit 7d62e53; [GPL-3.0-or-later Workspace](https://github.com/TaynanGT/Vice-Tay/blob/a2523483dc8f5f7378d1f41160d914648fbab649/Cargo.toml); In-Scope-Übernahme durch AnyXboxX, keine eigene neue Messung. |
+| Adoptions | [AnyXboxX Pool-Code am Snapshot](https://github.com/LooperSalty/AnyXboxX/blob/5a08a334ef216eff98d2c7d9a9166f94c9ef70ed/third_party/victory/crates/victory-gpu/src/pool.rs) bestätigt den Hersteller-Default. |

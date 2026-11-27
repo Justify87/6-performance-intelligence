@@ -15,27 +15,27 @@
     },
     "avatarmanz/VIctory-7900XTX": {
       "default_branch": "main",
-      "last_scanned_sha": "126acb35b509bdbe097d607f198d7a2736de5202",
+      "last_scanned_sha": "014d52dedf837d1ac660a0bd256c4704be9eeb40",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-26T21:01:31.670Z",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "LooperSalty/AnyXboxX": {
       "default_branch": "main",
-      "last_scanned_sha": "15024d54e690743604a67287f0e3f3f30adbaba8",
+      "last_scanned_sha": "5a08a334ef216eff98d2c7d9a9166f94c9ef70ed",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-26T21:01:31.670Z",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "fxceless/victory-fork": {
       "default_branch": "main",
-      "last_scanned_sha": "52ac4ec0f8a03f103c146e60228e53612759d435",
+      "last_scanned_sha": "4c60466140f4bccd2252427b6f2cfbc658c16906",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-26T19:12:24.249Z",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -69,9 +69,9 @@
     },
     "ubiquitarianism/leonida": {
       "default_branch": "main",
-      "last_scanned_sha": "fac8b4bb903b6988bd616e8874e77fa026858ffb",
+      "last_scanned_sha": "d1dff7949be62b6609c3c2ca937df7f50fbf1305",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-26T21:01:31.670Z",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -96,36 +96,36 @@
     },
     "Belobug/VIctory-Belobug-AMD": {
       "default_branch": "a-publier",
-      "last_scanned_sha": "cd8dfc06ace7ccb91a19431e74bc2d0de2a10145",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "4eb6cfdf9e61cb112f1f811344ec0dd309eddd6c",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "DexNom/VIctory": {
       "default_branch": "main",
-      "last_scanned_sha": "64bd58f5fb794216894bc0e33e03a3a64d19c347",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "8114ff779b5e1c7112b87476753dc8d0992ed97c",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "DoubleGhosty/cool_fox": {
       "default_branch": "main",
-      "last_scanned_sha": "64b89673d48c1045b015c1a145852683502b301d",
+      "last_scanned_sha": "6d813b461f8442849fd503b7c054eee18aa0f21f",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-26T21:33:00.743Z",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "ZigZagBoi1/ScarlettPort": {
       "default_branch": "main",
-      "last_scanned_sha": "23870346329e445d5806b220b7079c3ba076e703",
+      "last_scanned_sha": "de83fcff64af9dcfa38999acda83a44df22847b1",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-26T21:33:00.743Z",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -159,9 +159,9 @@
     },
     "PastiiJay/klbf-lab": {
       "default_branch": "main",
-      "last_scanned_sha": "0c529ca05c68e3d8a77f2a66143cb43b6b90e225",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "0a8c5777fbbcab6409c142b0bc1ad7081212fac4",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -195,36 +195,36 @@
     },
     "ThatRecompDev/five-star-recomp": {
       "default_branch": "main",
-      "last_scanned_sha": "9864ac5ee1cf9ab7909b1be427430d87f1c3eb26",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "96a66c55b94e66ea0a372fc3d0133d2fd40cb376",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "ProjectLeonidaL/leonida": {
       "default_branch": "main",
-      "last_scanned_sha": "1c5bd30911b19ee076d0187d60a80b2910de27bc",
+      "last_scanned_sha": "f3c94cab29da5bda14b784ecec1d81b23790a9b7",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-26T21:01:31.670Z",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "brcly/TuxBox": {
       "default_branch": "main",
-      "last_scanned_sha": "68e79b7ee8b2c79e34be016b8243441cab1741d2",
+      "last_scanned_sha": "12e4b064a5ca2a60c9d9503ae3412793a9fa3844",
       "cursor_origin": "verified_scan",
-      "last_completed_scan_at": "2026-11-26T21:01:31.670Z",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
     },
     "sammwyy/xvalkyrie": {
       "default_branch": "main",
-      "last_scanned_sha": "42db5d78f1fce93bdc11f70c2be16b2cb920ad8f",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "f348dd155c7f5e0594c68911746bb114112a53da",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -249,9 +249,9 @@
     },
     "zortos293/XSEmu": {
       "default_branch": "main",
-      "last_scanned_sha": "72590ae5118b1e37aeccea787d5bc891af9e751d",
-      "cursor_origin": "bootstrap_anchor",
-      "last_completed_scan_at": null,
+      "last_scanned_sha": "175d56845f610a5ff44629dd0b4d52edb13d3bcf",
+      "cursor_origin": "verified_scan",
+      "last_completed_scan_at": "2026-11-27T00:02:02.888Z",
       "status": "READY",
       "pending_target_sha": null,
       "last_error": null
@@ -267,5 +267,5 @@
     }
   },
   "state_contract": "A cursor advances only after proving complete enumeration and reviewing the corresponding default-branch interval, and atomically publishing findings and state without losing any repository files.",
-  "last_monitor_run_at": "2026-11-26T21:33:00.743Z"
+  "last_monitor_run_at": "2026-11-27T00:02:02.888Z"
 }
